@@ -10,7 +10,6 @@
     "lint": "next lint",
     "preview": "npx serve@latest out",
     "images:optimize": "node tools/optimize-images.mjs",
-    "prebuild": "npm run images:optimize",
     "test": "vitest"
   },
   "dependencies": {
