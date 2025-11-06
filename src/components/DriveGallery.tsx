@@ -106,6 +106,7 @@ export default function DriveGallery(props: Props) {
           style={{ height: 640, border: '0' }}
           loading="lazy"
           title="Club Gallery"
+          referrerPolicy="no-referrer"
         />
       </div>
     );
@@ -161,6 +162,7 @@ export default function DriveGallery(props: Props) {
             alt={img.name}
             className="absolute inset-0 w-full h-full object-cover object-center"
             loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           <div className="absolute bottom-2 left-2 right-2 text-xs text-white/90 truncate drop-shadow">

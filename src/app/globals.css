@@ -13,6 +13,11 @@ html {
   scroll-padding-top: 80px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
 body {
   background: radial-gradient(1200px 800px at 20% -10%, rgba(59,130,246,0.15), transparent),
               radial-gradient(1000px 600px at 110% 10%, rgba(139,92,246,0.12), transparent),

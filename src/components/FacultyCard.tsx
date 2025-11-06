@@ -34,6 +34,7 @@ export default function FacultyCard({ member, index }: { member: FacultyMember; 
                   height={128} 
                   className="h-full w-full object-cover"
                   loading="lazy"
+                  sizes="(max-width: 640px) 96px, 128px"
                 />
               </div>
             ) : (

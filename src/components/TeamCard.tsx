@@ -26,7 +26,7 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
       <div className="relative flex flex-col items-center text-center gap-3">
         {member.image ? (
           <div className="h-16 w-16 rounded-xl overflow-hidden shadow-neon-sm group-hover:shadow-neon transition-shadow duration-300 relative ring-1 ring-white/10">
-            <Image src={member.image} alt={member.name} width={64} height={64} className="h-full w-full object-cover" loading="lazy" />
+            <Image src={member.image} alt={member.name} width={64} height={64} className="h-full w-full object-cover" loading="lazy" sizes="64px" />
           </div>
         ) : (
           <div className="h-16 w-16 rounded-xl bg-gradient-to-br from-neon-blue to-neon-pink flex items-center justify-center font-display text-xl shadow-neon-sm group-hover:shadow-neon transition-shadow duration-300 relative">

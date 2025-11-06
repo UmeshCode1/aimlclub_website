@@ -79,7 +79,7 @@ export default function TeamProfileModal({ member, onClose }: TeamProfileModalPr
         <div className="flex flex-col items-center text-center gap-3">
           {member.image ? (
             <div className="h-24 w-24 rounded-xl overflow-hidden shadow-neon-sm ring-1 ring-white/10">
-              <Image src={member.image} alt={member.name} width={96} height={96} className="h-full w-full object-cover" loading="lazy" />
+              <Image src={member.image} alt={member.name} width={96} height={96} className="h-full w-full object-cover" loading="lazy" sizes="(max-width: 640px) 96px, 128px" />
             </div>
           ) : (
             <div className="h-24 w-24 rounded-xl bg-gradient-to-br from-neon-blue to-neon-pink flex items-center justify-center font-display text-2xl shadow-neon-sm">
