@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import SectionHeader from '@/components/SectionHeader';
 import Footer from '@/components/Footer';
-import TeamCard from '@/components/TeamCard';
+import TeamSection from '../components/TeamSection';
 import EventCard from '@/components/EventCard';
 import ProjectCard from '@/components/ProjectCard';
 import Preloader from '@/components/Preloader';
@@ -33,19 +33,15 @@ export default function Page() {
 
         {/* Team */}
         <section id="team" className="section container-max">
-          <SectionHeader title="Core Team" subtitle="A multidisciplinary team steering strategy, execution, creativity, and technology." center />
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {TEAM.map((m, i) => (
-              <TeamCard key={m.name} member={m} i={i} />
-            ))}
-          </div>
+          <SectionHeader title="Core Team" subtitle="Explore the people driving innovation and execution." center />
+          <TeamSection />
         </section>
 
         {/* Events */}
         <section id="events" className="section container-max">
           <SectionHeader title="Events" subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." center />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {EVENTS.map((e, i) => (
+            {EVENTS.map((e: any, i: number) => (
               <EventCard key={e.title + i} event={e} i={i} />
             ))}
           </div>
@@ -55,7 +51,7 @@ export default function Page() {
         <section id="projects" className="section container-max">
           <SectionHeader title="Projects" subtitle="Open-source and research initiatives building practical AI solutions." center />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {PROJECTS.map((p, i) => (
+            {PROJECTS.map((p: any, i: number) => (
               <ProjectCard key={p.title} project={p} i={i} />
             ))}
           </div>
