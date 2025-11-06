@@ -1,5 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import PageTransition from '@/components/PageTransition';
 import { Poppins, Space_Grotesk, Inter } from 'next/font/google';
 
@@ -28,7 +28,12 @@ export const metadata: Metadata = {
     description: 'Innovating the Future with Intelligence.',
     images: ['/og-cover.svg']
   },
-  viewport: { width: 'device-width', initialScale: 1, maximumScale: 1 },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
   themeColor: '#05060A'
 };
 
