@@ -20,6 +20,26 @@ body {
   background-attachment: fixed;
 }
 
+.skip-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -40px;
+  background: #05060A;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  font-size: 0.75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: top .25s ease;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
 /* Fancy container */
 .container-max { @apply mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-7xl; }
 

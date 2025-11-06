@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://umeshcode1.github.io/aimlclub_website/sitemap.xml
