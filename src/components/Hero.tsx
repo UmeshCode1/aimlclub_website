@@ -1,17 +1,21 @@
 "use client";
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { JOIN_LINK } from '@/data/content';
 
 export default function Hero() {
+  const Particles = dynamic(() => import('./Particles'), { ssr: false });
+
   return (
     <section className="relative pt-28 md:pt-36 pb-16 overflow-hidden">
-      {/* Animated grid background */}
+      {/* Animated grid + particles background */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[720px] w-[720px] rounded-full bg-gradient-to-b from-neon-blue/30 to-transparent blur-3xl animate-pulse-slow" />
         <div className="absolute top-40 -left-20 h-72 w-72 rounded-full bg-neon-pink/20 blur-3xl animate-pulse-slow" />
         <div className="absolute top-20 -right-10 h-80 w-80 rounded-full bg-neon-purple/20 blur-3xl animate-float" />
+        <Particles density={0.00009} />
       </div>
 
       <div className="container-max text-center">
