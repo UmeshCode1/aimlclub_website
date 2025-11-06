@@ -1,5 +1,7 @@
 # AI & Machine Learning Club – OCT
 
+🌐 **Live Site:** [https://umeshcode1.github.io/aimlclub_website/](https://umeshcode1.github.io/aimlclub_website/)
+
 Futuristic, responsive website for the AI & Machine Learning Club at Oriental College of Technology. Showcases vision, team, events, projects, gallery, and contact.
 
 ## ✨ Features
@@ -7,8 +9,8 @@ Futuristic, responsive website for the AI & Machine Learning Club at Oriental Co
 - Tailwind CSS dark neon tech theme
 - Framer Motion animations & preloader
 - Responsive sections: Hero, About, Team, Events, Projects, Gallery, Contact
-- SEO via `next-seo`
 - Static export ready (GitHub Pages) and works on Vercel
+- Automated deployment via GitHub Actions
 
 ## 🛠 Tech Stack
 | Layer | Choice |
@@ -17,7 +19,7 @@ Futuristic, responsive website for the AI & Machine Learning Club at Oriental Co
 | Styling | Tailwind CSS |
 | Animations | Framer Motion |
 | Icons | lucide-react |
-| SEO | next-seo |
+| Deployment | GitHub Actions + Pages |
 
 ## 📂 Structure
 ```
