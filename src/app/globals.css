@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #05060A;
+  --card: #0B0E1A;
+  --muted: #9BA3AF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(59,130,246,0.15), transparent),
+              radial-gradient(1000px 600px at 110% 10%, rgba(139,92,246,0.12), transparent),
+              #05060A;
+}
+
+/* Fancy container */
+.container-max { @apply mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-7xl; }
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 transition-colors;
+}
+.btn-primary {
+  @apply bg-brand-600 hover:bg-brand-700 text-white shadow-neon;
+}
+.btn-ghost {
+  @apply bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 backdrop-blur;
+}
+
+/* Card */
+.card { @apply bg-white/5 border border-white/10 rounded-xl shadow-lg; }
+
+/* Section spacing */
+.section { @apply py-16 sm:py-20 md:py-24; }
+.section-title { @apply font-display text-3xl md:text-4xl font-semibold tracking-tight; }
+.section-sub { @apply text-white/70 max-w-2xl; }
+
+/* Neon ring */
+.neon-ring { box-shadow: 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 20px rgba(0,240,255,0.15); }
+
+/* Hide preloader after ready */
+body.ready #preloader { @apply opacity-0 pointer-events-none; transition: opacity .6s ease; }
