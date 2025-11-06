@@ -1,10 +1,11 @@
-// Optimize images in public/images/team using sharp to WebP.
+// Optimize images in public/images/team and faculty using sharp to WebP.
 // Safe to run with no images; skips non JPG/PNG.
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
 const teamDir = path.resolve('public/images/team');
+const facultyDir = path.resolve('public/images/faculty');
 
 async function ensureDir(p) {
   await fs.promises.mkdir(p, { recursive: true });
@@ -30,16 +31,23 @@ async function optimizeFile(filePath) {
   }
 }
 
-async function run() {
-  await ensureDir(teamDir);
-  const files = await fs.promises.readdir(teamDir).catch(() => []);
+async function processDir(dir, label) {
+  await ensureDir(dir);
+  const files = await fs.promises.readdir(dir).catch(() => []);
   if (files.length === 0) {
-    console.log('No team images found. Place JPG/PNG files in public/images/team');
+    console.log(`No ${label} images found.`);
     return;
   }
   await Promise.all(
-    files.map(f => optimizeFile(path.join(teamDir, f)))
+    files.map(f => optimizeFile(path.join(dir, f)))
   );
+}
+
+async function run() {
+  console.log('Optimizing images...');
+  await processDir(teamDir, 'team');
+  await processDir(facultyDir, 'faculty');
+  console.log('Done!');
 }
 
 run();

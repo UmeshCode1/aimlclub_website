@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import SectionHeader from '@/components/SectionHeader';
 import Footer from '@/components/Footer';
 import TeamSection from '../components/TeamSection';
+import FacultySection from '../components/FacultySection';
 import EventCard from '@/components/EventCard';
 import ProjectCard from '@/components/ProjectCard';
 import Preloader from '@/components/Preloader';
@@ -30,6 +31,9 @@ export default function Page() {
           />
           <AboutCards />
         </section>
+
+        {/* Faculty */}
+        <FacultySection />
 
         {/* Team */}
         <section id="team" className="section container-max">

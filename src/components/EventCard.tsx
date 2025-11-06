@@ -1,41 +1,88 @@
 "use client";
 import { motion } from 'framer-motion';
 import type { EventItem } from '@/data/content';
-import { CalendarDays, ArrowRight } from 'lucide-react';
+import { CalendarDays, ArrowRight, Clock, MapPin } from 'lucide-react';
 
 export default function EventCard({ event, i }: { event: EventItem; i: number }) {
+  const eventDate = new Date(event.date);
+  const isUpcoming = !event.past && eventDate > new Date();
+  const isPast = event.past || eventDate < new Date();
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.04 * i }}
-      whileHover={{ y: -6, scale: 1.02 }}
-      className="card p-6 flex flex-col gap-4 hover:shadow-neon transition-all duration-300 group relative overflow-hidden"
+      transition={{ delay: 0.05 * i, duration: 0.5 }}
+      whileHover={{ y: -8, scale: 1.03 }}
+      className="card p-6 flex flex-col gap-4 hover:shadow-neon-lg transition-all duration-500 group relative overflow-hidden"
     >
-      {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-purple-500/5 to-neon-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       
-      <div className="relative flex flex-col gap-4">
+      {/* Glow effect */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-neon-blue via-purple-500 to-neon-pink rounded-2xl blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
+      
+      <div className="relative flex flex-col gap-4 h-full">
+        {/* Header with status badge */}
         <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-2 text-neon-blue">
-            <CalendarDays size={18} />
-            <div className="text-sm text-white/70">{new Date(event.date).toDateString()}</div>
+          <div className="flex items-center gap-2">
+            <div className={`p-2 rounded-lg ${isUpcoming ? 'bg-neon-blue/20 text-neon-blue' : 'bg-white/5 text-white/50'} group-hover:scale-110 transition-transform duration-300`}>
+              <CalendarDays size={20} />
+            </div>
+            <div>
+              <div className="text-xs text-white/50 uppercase tracking-wider">
+                {eventDate.toLocaleString('default', { month: 'short' })}
+              </div>
+              <div className="text-lg font-bold">
+                {eventDate.getDate()}
+              </div>
+            </div>
           </div>
-          {event.past && (
-            <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60 border border-white/10">Past</span>
+          
+          {isUpcoming && (
+            <motion.span 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 text-emerald-400 border border-emerald-500/30 font-medium shadow-lg shadow-emerald-500/10"
+            >
+              Upcoming
+            </motion.span>
+          )}
+          {isPast && (
+            <span className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-white/40 border border-white/10">
+              Past Event
+            </span>
           )}
         </div>
         
-        <div className="font-semibold tracking-tight text-xl group-hover:text-neon-blue transition-colors">{event.title}</div>
-        <p className="text-sm text-white/70 leading-relaxed flex-grow">{event.description}</p>
+        {/* Title */}
+        <h3 className="font-display text-xl font-semibold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neon-blue group-hover:to-neon-pink transition-all duration-300">
+          {event.title}
+        </h3>
         
-        {event.registerUrl && !event.past && (
-          <a href={event.registerUrl} className="btn btn-primary w-fit text-sm mt-auto group/btn">
-            Register
-            <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-          </a>
-        )}
+        {/* Description */}
+        <p className="text-sm text-white/70 leading-relaxed flex-grow line-clamp-3 group-hover:text-white/80 transition-colors">
+          {event.description}
+        </p>
+        
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-2 border-t border-white/5">
+          {event.registerUrl && isUpcoming ? (
+            <a 
+              href={event.registerUrl} 
+              className="btn btn-primary w-full text-sm group/btn justify-center"
+            >
+              Register Now
+              <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+            </a>
+          ) : (
+            <div className="text-xs text-white/40 flex items-center gap-2">
+              <Clock size={14} />
+              {eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+          )}
+        </div>
       </div>
     </motion.div>
   );

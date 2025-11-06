@@ -12,13 +12,47 @@ export type TeamRole =
 export interface TeamMember {
   name: string;
   role: TeamRole;
-  image?: string; // optional placeholder
+  image?: string;
   linkedin?: string;
   github?: string;
   instagram?: string;
-  x?: string; // X (formerly Twitter)
+  x?: string;
   bio?: string;
 }
+
+export interface FacultyMember {
+  name: string;
+  designation: string;
+  department?: string;
+  image?: string;
+  email?: string;
+  linkedin?: string;
+  bio?: string;
+  qualifications?: string[];
+}
+
+export const FACULTY: FacultyMember[] = [
+  {
+    name: 'Dr. Rajesh Kumar Nigam',
+    designation: 'Head of Department',
+    department: 'Artificial Intelligence & Machine Learning',
+    bio: 'Leading research and academic excellence in AI/ML with over 15 years of experience in machine learning, deep learning, and computer vision.',
+    qualifications: ['Ph.D. in Computer Science', 'M.Tech in AI & ML', 'B.Tech in CSE'],
+    email: 'rajesh.nigam@oct.edu.in',
+    linkedin: '#',
+    image: '/images/faculty/dr-rajesh-nigam.webp'
+  },
+  {
+    name: 'Prof. Shamila Khan',
+    designation: 'Club Coordinator',
+    department: 'Artificial Intelligence & Machine Learning',
+    bio: 'Passionate about fostering innovation and guiding students in AI research, projects, and industry collaborations.',
+    qualifications: ['M.Tech in Machine Learning', 'B.Tech in CSE'],
+    email: 'shamila.khan@oct.edu.in',
+    linkedin: '#',
+    image: '/images/faculty/shamila-khan.webp'
+  }
+];
 
 export const TEAM: TeamMember[] = [
   { name: 'Vishal Kumar', role: 'President', bio: 'Leads club vision, partnerships, and strategic initiatives across campus.', linkedin: '#', x: '#' },
