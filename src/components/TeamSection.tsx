@@ -1,7 +1,8 @@
 "use client";
-import { useMemo, useState } from 'react';
-import { TEAM, TeamMember, TeamRole } from '@/data/content';
-import TeamCard from '@/components/TeamCard';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { TEAM, TeamMember, TeamRole } from '../data/content';
+import TeamCard from './TeamCard';
+import dynamic from 'next/dynamic';
 import { Filter, Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -29,10 +30,18 @@ const roleColors: Record<TeamRole, string> = {
   'Stage Lead': 'from-amber-500 to-pink-500'
 };
 
+const ProfileModal = dynamic<{
+  member: TeamMember;
+  onClose: () => void;
+}>(() => import('./TeamProfileModal'), { ssr: false });
+
 export default function TeamSection() {
   const [query, setQuery] = useState('');
   const [activeRoles, setActiveRoles] = useState<Set<TeamRole>>(new Set());
   const [showFilters, setShowFilters] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState<number>(0);
+  const [openMember, setOpenMember] = useState<TeamMember | null>(null);
+  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   function toggleRole(r: TeamRole) {
     setActiveRoles(prev => {
@@ -48,12 +57,56 @@ export default function TeamSection() {
   }
 
   const filtered: TeamMember[] = useMemo(() => {
-    return TEAM.filter(m => {
+    return TEAM.filter((m: TeamMember) => {
       if (activeRoles.size && !activeRoles.has(m.role)) return false;
       if (query && !m.name.toLowerCase().includes(query.toLowerCase())) return false;
       return true;
-    }).sort((a, b) => roleOrder.indexOf(a.role) - roleOrder.indexOf(b.role) || a.name.localeCompare(b.name));
+    }).sort((a: TeamMember, b: TeamMember) => roleOrder.indexOf(a.role) - roleOrder.indexOf(b.role) || a.name.localeCompare(b.name));
   }, [query, activeRoles]);
+
+  // Keyboard navigation (roving focus)
+  function onGridKey(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (!['ArrowRight','ArrowLeft','ArrowUp','ArrowDown','Home','End'].includes(e.key)) return;
+    e.preventDefault();
+    const cols = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 3 : 2; // rough responsive guess
+    let next = focusedIndex;
+    switch (e.key) {
+      case 'ArrowRight': next = Math.min(focusedIndex + 1, filtered.length - 1); break;
+      case 'ArrowLeft': next = Math.max(focusedIndex - 1, 0); break;
+      case 'ArrowDown': next = Math.min(focusedIndex + cols, filtered.length - 1); break;
+      case 'ArrowUp': next = Math.max(focusedIndex - cols, 0); break;
+      case 'Home': next = 0; break;
+      case 'End': next = filtered.length - 1; break;
+    }
+    setFocusedIndex(next);
+  }
+
+  // Move DOM focus to the currently focused card wrapper
+  useEffect(() => {
+    const el = itemRefs.current[focusedIndex];
+    if (el) el.focus();
+  }, [focusedIndex, filtered.length]);
+
+  // Persist filters in query params
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (query) params.set('q', query);
+    if (activeRoles.size) params.set('roles', Array.from(activeRoles).join(','));
+    const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}${window.location.hash}`;
+    window.history.replaceState(null, '', newUrl);
+  }, [query, activeRoles]);
+
+  // Hydrate from query params once
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    const qParam = sp.get('q');
+    const rolesParam = sp.get('roles');
+    if (qParam) setQuery(qParam);
+    if (rolesParam) {
+      const parts = rolesParam.split(',').filter(Boolean) as TeamRole[];
+      setActiveRoles(new Set(parts));
+    }
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -128,14 +181,37 @@ export default function TeamSection() {
         Showing {filtered.length} member{filtered.length !== 1 && 's'}{activeRoles.size > 0 && ' • filtered'}
       </div>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <div
+        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
+        onKeyDown={onGridKey}
+        role="list"
+        aria-label="Team members"
+      >
         {filtered.map((m, i) => (
-          <TeamCard key={m.name} member={m} i={i} />
+          <div
+            key={m.name}
+            role="listitem"
+            ref={(el) => { itemRefs.current[i] = el; }}
+            tabIndex={i === focusedIndex ? 0 : -1}
+            aria-label={`${m.name}, ${m.role}`}
+          >
+            <TeamCard
+              member={m}
+              i={i}
+              onOpen={setOpenMember}
+            />
+          </div>
         ))}
         {filtered.length === 0 && (
           <div className="col-span-full text-center text-white/50 text-sm py-12">No team members match your filters.</div>
         )}
       </div>
+
+      <AnimatePresence>
+        {openMember && (
+          <ProfileModal member={openMember} onClose={() => setOpenMember(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
