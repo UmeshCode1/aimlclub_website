@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#C7FF41" />
+      <stop offset="50%" stop-color="#B1FF2E" />
+      <stop offset="100%" stop-color="#90E600" />
+    </radialGradient>
+  </defs>
+  <!-- Outer neon ring -->
+  <circle cx="256" cy="256" r="240" fill="#05060A" stroke="url(#glow)" stroke-width="20" />
+  <!-- Club emblem composed from PNG embedded as image placeholder (user-provided). Replace href with actual data URI when available. -->
+  <g>
+    <image href="data:image/png;base64,REPLACE_BASE64_PNG" x="96" y="96" width="320" height="320" preserveAspectRatio="xMidYMid meet" />
+  </g>
+  <text x="256" y="110" font-family="Poppins, Arial, sans-serif" font-size="80" text-anchor="middle" fill="#C7FF41" font-weight="600">AIML</text>
+  <text x="256" y="440" font-family="Poppins, Arial, sans-serif" font-size="90" text-anchor="middle" fill="#C7FF41" font-weight="600">Club</text>
+</svg>

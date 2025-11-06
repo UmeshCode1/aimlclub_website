@@ -7,6 +7,6 @@
     </linearGradient>
   </defs>
   <rect x="2" y="2" width="60" height="60" rx="14" fill="#05060A" stroke="url(#g)" stroke-width="3" />
-  <path d="M20 42c0-14 8-20 12-26 4 6 12 12 12 26" fill="none" stroke="url(#g)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-  <circle cx="32" cy="34" r="6" fill="url(#g)" />
+  <!-- Embedded PNG club logo (user must place logo.png in /public/images/club/) -->
+  <image href="/images/club/logo.png" x="10" y="10" width="44" height="44" preserveAspectRatio="xMidYMid meet" />
 </svg>
