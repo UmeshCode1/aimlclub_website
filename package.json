@@ -1,7 +1,29 @@
 {
   "name": "ai-ml-club-oct",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Official website for the AI & Machine Learning Club at OCT - Showcasing events, projects, team members, and community resources",
+  "author": "Umesh Patel <contact@umeshpatel.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umeshcode1/aimlclub_website.git"
+  },
+  "homepage": "https://umeshcode1.github.io/aimlclub_website/",
+  "bugs": {
+    "url": "https://github.com/umeshcode1/aimlclub_website/issues"
+  },
+  "keywords": [
+    "ai",
+    "machine-learning",
+    "club-website",
+    "nextjs",
+    "typescript",
+    "tailwind-css",
+    "education",
+    "community",
+    "student-project"
+  ],
+  "private": false,
   "type": "module",
   "scripts": {
     "dev": "next dev",
