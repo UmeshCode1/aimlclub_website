@@ -8,6 +8,18 @@
   --muted: #9BA3AF;
 }
 
+.light {
+  --bg: #F8F9FA;
+  --card: #FFFFFF;
+  --muted: #6B7280;
+}
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: var(--theme-transition, 0s);
+  transition-timing-function: ease;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
@@ -23,6 +35,13 @@ body {
               radial-gradient(1000px 600px at 110% 10%, rgba(139,92,246,0.12), transparent),
               #05060A;
   background-attachment: fixed;
+}
+
+.light body {
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(59,130,246,0.08), transparent),
+              radial-gradient(1000px 600px at 110% 10%, rgba(139,92,246,0.06), transparent),
+              #F8F9FA;
+  color: #1F2937;
 }
 
 .skip-link {

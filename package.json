@@ -10,7 +10,8 @@
     "lint": "next lint",
     "preview": "npx serve@latest out",
     "images:optimize": "node tools/optimize-images.mjs",
-  "docs:resources": "node tools/generate-resources.mjs",
+    "docs:resources": "node tools/generate-resources.mjs",
+    "lighthouse": "node tools/lighthouse-audit.mjs",
     "test": "vitest"
   },
   "dependencies": {

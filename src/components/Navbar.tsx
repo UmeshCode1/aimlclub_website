@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { JOIN_LINK } from '@/data/content';
+import ThemeToggle from './ThemeToggle';
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -63,6 +64,7 @@ export default function Navbar() {
               </a>
             );
           })}
+          <ThemeToggle />
           <a href={JOIN_LINK.href} className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
         </div>
 

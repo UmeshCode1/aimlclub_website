@@ -1,17 +1,28 @@
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import SectionHeader from '@/components/SectionHeader';
 import Footer from '@/components/Footer';
-import TeamSection from '../components/TeamSection';
-import FacultySection from '../components/FacultySection';
 import EventCard from '@/components/EventCard';
 import ProjectCard from '@/components/ProjectCard';
 import Preloader from '@/components/Preloader';
-import ContactSection from '@/components/ContactSection';
 import AboutCards from '@/components/AboutCards';
 import ScrollToTop from '@/components/ScrollToTop';
-import GalleryGrid from '@/components/GalleryGrid';
 import { TEAM, EVENTS, PROJECTS } from '@/data/content';
+
+// Dynamic imports for heavy components
+const TeamSection = dynamic(() => import('../components/TeamSection'), {
+  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+});
+const FacultySection = dynamic(() => import('../components/FacultySection'), {
+  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+});
+const GalleryGrid = dynamic(() => import('@/components/GalleryGrid'), {
+  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+});
+const ContactSection = dynamic(() => import('@/components/ContactSection'), {
+  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+});
 
 export default function Page() {
   return (
