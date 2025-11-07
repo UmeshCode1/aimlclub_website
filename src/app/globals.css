@@ -54,9 +54,11 @@ body {
 }
 
 body {
-  background: radial-gradient(1200px 800px at 20% -10%, rgba(59,130,246,0.15), transparent),
-              radial-gradient(1000px 600px at 110% 10%, rgba(139,92,246,0.12), transparent),
-              #05060A;
+  background: 
+    radial-gradient(ellipse 1400px 900px at 25% -5%, rgba(0, 240, 255, 0.12), transparent),
+    radial-gradient(ellipse 1200px 700px at 85% 15%, rgba(139, 92, 246, 0.1), transparent),
+    radial-gradient(ellipse 800px 600px at 50% 100%, rgba(255, 28, 247, 0.08), transparent),
+    linear-gradient(180deg, #05060A 0%, #0A0D1A 50%, #05060A 100%);
   background-attachment: fixed;
   /* Improve rendering performance */
   will-change: auto;
@@ -64,6 +66,7 @@ body {
   /* Prevent horizontal overflow */
   overflow-x: hidden;
   min-height: 100vh;
+  position: relative;
 }
 
 .light body {
@@ -96,10 +99,12 @@ body {
 /* Fancy container */
 .container-max { @apply mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-7xl; }
 
-/* Buttons */
+/* Buttons - Enhanced Interactions */
 .btn {
-  @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium transition-all duration-300 relative overflow-hidden;
-  transform: translateZ(0); /* Hardware acceleration */
+  @apply inline-flex items-center gap-2 rounded-lg px-6 py-3.5 font-semibold transition-all duration-300 relative overflow-hidden;
+  transform: translateZ(0);
+  cursor: pointer;
+  user-select: none;
 }
 
 /* Button ripple effect */
@@ -113,7 +118,8 @@ body {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition: width 0.6s ease-out, height 0.6s ease-out;
+  pointer-events: none;
 }
 
 .btn:active::before {
@@ -123,31 +129,45 @@ body {
 
 .btn-primary {
   @apply text-white shadow-neon hover:shadow-neon-strong;
-  /* Override gradient with adaptive accents */
-  background-image: linear-gradient(90deg, var(--accent-1), var(--accent-2)) !important;
+  background-image: linear-gradient(135deg, var(--accent-1), var(--accent-2)) !important;
+  position: relative;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--accent-1) 90%, white),
+    color-mix(in srgb, var(--accent-2) 90%, white)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
 }
 
 .btn-primary:hover {
-  background-image: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--accent-1) 85%, white),
-    color-mix(in srgb, var(--accent-2) 85%, white)
-  ) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 48px rgba(0, 240, 255, 0.5), 0 6px 24px rgba(139, 92, 246, 0.3);
 }
 
 .btn-primary:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
 }
 
 .btn-ghost {
   @apply bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 hover:border-white/20 backdrop-blur;
+  transition: all 0.3s ease;
 }
 
 .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
 }
 
 /* Improved focus states for all buttons */
@@ -158,8 +178,14 @@ body {
 
 /* Cards with enhanced hover effects */
 .card { 
-  @apply bg-white/5 border border-white/10 rounded-xl shadow-lg backdrop-blur-sm relative overflow-hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px -5px rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateZ(0);
 }
 
@@ -169,16 +195,49 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 240, 255, 0.3), 
+    rgba(139, 92, 246, 0.3),
+    rgba(255, 28, 247, 0.3), 
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(circle at center, rgba(0, 240, 255, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover::after {
+  opacity: 0.5;
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 20px 60px -15px rgba(0, 240, 255, 0.3), 
-              0 10px 30px -10px rgba(139, 92, 246, 0.2);
-  transform: translateZ(0) translateY(-4px);
+  border-color: rgba(0, 240, 255, 0.3);
+  background: linear-gradient(135deg, 
+    rgba(0, 240, 255, 0.08) 0%, 
+    rgba(139, 92, 246, 0.06) 50%,
+    rgba(255, 28, 247, 0.04) 100%
+  );
+  box-shadow: 
+    0 0 40px rgba(0, 240, 255, 0.2),
+    0 20px 60px -15px rgba(0, 240, 255, 0.3), 
+    0 10px 30px -10px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateZ(0) translateY(-6px) scale(1.01);
 }
 
 /* Fancy gradient border on hover without layout shift */
@@ -321,12 +380,30 @@ a:hover:not(.btn) {
   }
 }
 
+@keyframes grid {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 80px 80px;
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-grid {
+  animation: grid 20s linear infinite;
+}
+
+/* Gradient radial utility */
+.bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--tw-gradient-stops));
 }
 
 /* Gradient text shimmer */

@@ -45,7 +45,7 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'backdrop-blur-xl bg-black/60 border-b border-white/10 shadow-2xl shadow-neon-blue/5' 
+          ? 'backdrop-blur-2xl bg-gradient-to-r from-black/70 via-black/60 to-black/70 border-b border-white/15 shadow-2xl shadow-neon-blue/10' 
           : 'bg-transparent'
       }`} 
       role="banner"
@@ -56,9 +56,12 @@ export default function Navbar() {
           aria-label="AI & ML Club – OCT Home" 
           className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-xl p-2 transition-all duration-300 hover:scale-105 group"
         >
-          <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-gradient-to-tr from-neon-blue via-neon-purple to-neon-pink shadow-neon group-hover:shadow-neon-strong transition-all duration-300 group-hover:rotate-6" />
-          <span className="font-display text-xl md:text-2xl tracking-tight brand-gradient whitespace-nowrap font-bold">
+          <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-gradient-to-tr from-neon-blue via-neon-purple to-neon-pink shadow-lg shadow-neon-blue/50 group-hover:shadow-neon-strong transition-all duration-300 group-hover:rotate-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+          <span className="font-display text-xl md:text-2xl tracking-tight brand-gradient whitespace-nowrap font-bold relative">
             AI & ML Club
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-pink group-hover:w-full transition-all duration-500" />
           </span>
         </Link>
 
@@ -71,15 +74,15 @@ export default function Navbar() {
                 href={n.href}
                 role="menuitem"
                 aria-current={isActive ? 'page' : undefined}
-                className={`relative transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg px-4 py-2 font-semibold group ${
-                  isActive ? 'text-white' : 'text-white/60 hover:text-white'
+                className={`relative transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg px-4 py-2 font-bold text-sm tracking-wide group ${
+                  isActive ? 'text-white' : 'text-white/65 hover:text-white'
                 }`}
               >
                 {n.label}
                 {isActive ? (
-                  <span className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-neon-sm" />
+                  <span className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-lg shadow-neon-blue/50 animate-pulse" />
                 ) : (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink group-hover:w-full transition-all duration-300" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink group-hover:w-full transition-all duration-300 shadow-lg shadow-neon-blue/50" />
                 )}
               </a>
             );
@@ -88,7 +91,7 @@ export default function Navbar() {
           <SparkHover density={1.4}>
             <a 
               href={JOIN_LINK.href} 
-              className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue shadow-neon hover:shadow-neon-strong"
+              className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue shadow-lg shadow-neon-blue/30 hover:shadow-neon-strong text-sm font-bold"
             >
               {JOIN_LINK.label}
             </a>

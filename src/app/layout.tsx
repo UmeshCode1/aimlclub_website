@@ -4,6 +4,7 @@ import PageTransition from '@/components/PageTransition';
 import ScrollProgress from '@/components/ScrollProgress';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import AccentThemeController from '@/components/AccentThemeController';
+import StructuredData from '@/components/StructuredData';
 import { Poppins, Space_Grotesk, Inter } from 'next/font/google';
 
 const poppins = Poppins({ 
@@ -34,42 +35,95 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'AI & Machine Learning Club – OCT',
+  title: {
+    default: 'AI & ML Club – OCT | Empowering Future Innovators',
+    template: '%s | AI & ML Club – OCT',
+  },
   description:
-    'Innovating the Future with Intelligence. Showcasing workshops, projects, hackathons, and AI research at Oriental College of Technology.',
-  icons: { icon: '/favicon.svg' },
+    'Join OCT Bhopal\'s premier AI & Machine Learning community. Workshops, hackathons, research projects, and industry partnerships. Building the next generation of AI innovators through hands-on learning and innovation.',
+  keywords: [
+    'AI club',
+    'machine learning',
+    'OCT Bhopal',
+    'artificial intelligence',
+    'student community',
+    'tech workshops',
+    'hackathons',
+    'research projects',
+    'data science',
+    'deep learning',
+    'Oriental College of Technology',
+    'AI education',
+    'ML projects',
+  ],
+  authors: [{ name: 'AI & ML Club – OCT', url: 'https://umeshcode1.github.io/aimlclub_website' }],
+  creator: 'AI & ML Club – OCT',
+  publisher: 'Oriental College of Technology',
+  icons: { icon: '/favicon.svg', apple: '/apple-touch-icon.png' },
   metadataBase: new URL('https://umeshcode1.github.io/aimlclub_website'),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: 'website',
-    title: 'AI & Machine Learning Club – OCT',
+    locale: 'en_US',
+    title: 'AI & ML Club – OCT | Empowering Future Innovators',
     description:
-      'Innovating the Future with Intelligence. Workshops, hackathons, research and student projects at OCT.',
+      'Join OCT Bhopal\'s premier AI & Machine Learning community. Workshops, hackathons, research, and industry partnerships.',
     url: 'https://umeshcode1.github.io/aimlclub_website',
     siteName: 'AI & ML Club – OCT',
-    images: [{ url: '/og-cover.svg', width: 1200, height: 630 }]
+    images: [{ 
+      url: '/og-cover.svg', 
+      width: 1200, 
+      height: 630,
+      alt: 'AI & ML Club – OCT | Empowering Future Innovators'
+    }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI & Machine Learning Club – OCT',
-    description: 'Innovating the Future with Intelligence.',
+    site: '@aimlclub_oct',
+    creator: '@aimlclub_oct',
+    title: 'AI & ML Club – OCT | Empowering Future Innovators',
+    description: 'Join OCT Bhopal\'s premier AI & Machine Learning community. Workshops, hackathons, research.',
     images: ['/og-cover.svg']
+  },
+  category: 'education',
+  alternates: {
+    canonical: 'https://umeshcode1.github.io/aimlclub_website',
   },
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  themeColor: '#05060A'
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#05060A' },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${poppins.variable} ${spaceGrotesk.variable} ${inter.variable}`}>
+      <head>
+        <StructuredData />
+      </head>
       <body className="min-h-screen bg-[#05060A] text-white font-sans antialiased selection:bg-neon-blue/40 selection:text-white">
         <ThemeProvider>
           <ScrollProgress />
-          <a href="#main" className="skip-link">Skip to content</a>
+          <a href="#main" className="skip-link" aria-label="Skip to main content">
+            Skip to content
+          </a>
           <AccentThemeController />
           <PageTransition>
             {children}
