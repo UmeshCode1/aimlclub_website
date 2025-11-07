@@ -39,25 +39,46 @@ function Avatar({ m }: { m: TeamMember }) {
 export default function TeamMarquee({ members, onOpen }: Props) {
   if (!members?.length) return null;
   // Duplicate list for seamless loop
-  const loop = [...members, ...members];
+  const half = Math.ceil(members.length / 2);
+  const rowA = [...members.slice(0, half), ...members.slice(0, half)];
+  const rowB = [...members.slice(half), ...members.slice(half)];
   return (
     <div className="marquee group" aria-label="Team members carousel">
-      <div className="marquee-track" role="list" aria-live="polite">
-        {loop.map((m, idx) => (
-          <button
-            key={`${m.name}-${idx}`}
-            type="button"
-            role="listitem"
-            onClick={() => onOpen?.(m)}
-            className="isolate mx-2 my-3 inline-flex flex-col items-center gap-2 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-purple/60"
-          >
-            <Avatar m={m} />
-            <span className="text-xs text-white/80 leading-tight max-w-[8rem] text-center">
-              {m.name}
-              <span className="block text-[10px] text-white/60">{m.role}</span>
-            </span>
-          </button>
-        ))}
+      <div className="marquee-rows">
+        <div className="marquee-track" role="list" aria-live="polite">
+          {rowA.map((m, idx) => (
+            <button
+              key={`a-${m.name}-${idx}`}
+              type="button"
+              role="listitem"
+              onClick={() => onOpen?.(m)}
+              className="isolate mx-2 my-2 inline-flex flex-col items-center gap-2 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-purple/60"
+            >
+              <Avatar m={m} />
+              <span className="text-xs text-white/80 leading-tight max-w-[8rem] text-center">
+                {m.name}
+                <span className="block text-[10px] text-white/60">{m.role}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="marquee-track reverse slower" role="list" aria-live="polite">
+          {rowB.map((m, idx) => (
+            <button
+              key={`b-${m.name}-${idx}`}
+              type="button"
+              role="listitem"
+              onClick={() => onOpen?.(m)}
+              className="isolate mx-2 my-2 inline-flex flex-col items-center gap-2 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-purple/60"
+            >
+              <Avatar m={m} />
+              <span className="text-xs text-white/80 leading-tight max-w-[8rem] text-center">
+                {m.name}
+                <span className="block text-[10px] text-white/60">{m.role}</span>
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
