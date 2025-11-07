@@ -45,7 +45,7 @@ export default function Navbar() {
       <nav className="container-max flex items-center justify-between h-16" aria-label="Primary">
         <Link href="#" aria-label="AI & ML Club – OCT Home" className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg">
           <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-neon-blue to-neon-pink shadow-neon" />
-          <span className="font-display text-lg md:text-xl tracking-tight">AI & ML Club – OCT</span>
+          <span className="font-display text-lg md:text-xl tracking-tight bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent">AI & ML Club – OCT</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-6" role="menubar">

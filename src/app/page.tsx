@@ -8,6 +8,8 @@ import ProjectCard from '@/components/ProjectCard';
 import Preloader from '@/components/Preloader';
 import AboutCards from '@/components/AboutCards';
 import ScrollToTop from '@/components/ScrollToTop';
+import Tilt from '@/components/Tilt';
+import ParallaxSection from '@/components/ParallaxSection';
 import { TEAM, EVENTS, PROJECTS } from '@/data/content';
 
 // Dynamic imports for heavy components
@@ -35,12 +37,14 @@ export default function Page() {
 
         {/* About */}
         <section id="about" className="section container-max">
-          <SectionHeader
-            title="About the Club"
-            subtitle="We empower students to explore Artificial Intelligence and Machine Learning through hands-on workshops, collaborative open-source projects, competitive hackathons, and impactful research initiatives."
-            center
-          />
-          <AboutCards />
+          <ParallaxSection speed={0.12}>
+            <SectionHeader
+              title="About the Club"
+              subtitle="We empower students to explore Artificial Intelligence and Machine Learning through hands-on workshops, collaborative open-source projects, competitive hackathons, and impactful research initiatives."
+              center
+            />
+            <AboutCards />
+          </ParallaxSection>
         </section>
 
         {/* Faculty */}
@@ -54,28 +58,38 @@ export default function Page() {
 
         {/* Events */}
         <section id="events" className="section container-max">
-          <SectionHeader title="Events" subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." center />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {EVENTS.map((e: any, i: number) => (
-              <EventCard key={e.title + i} event={e} i={i} />
-            ))}
-          </div>
+          <ParallaxSection speed={0.1}>
+            <SectionHeader title="Events" subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." center />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {EVENTS.map((e: any, i: number) => (
+                <Tilt key={e.title + i}>
+                  <EventCard event={e} i={i} />
+                </Tilt>
+              ))}
+            </div>
+          </ParallaxSection>
         </section>
 
         {/* Projects */}
         <section id="projects" className="section container-max">
-          <SectionHeader title="Projects" subtitle="Open-source and research initiatives building practical AI solutions." center />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {PROJECTS.map((p: any, i: number) => (
-              <ProjectCard key={p.title} project={p} i={i} />
-            ))}
-          </div>
+          <ParallaxSection speed={0.08}>
+            <SectionHeader title="Projects" subtitle="Open-source and research initiatives building practical AI solutions." center />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {PROJECTS.map((p: any, i: number) => (
+                <Tilt key={p.title}>
+                  <ProjectCard project={p} i={i} />
+                </Tilt>
+              ))}
+            </div>
+          </ParallaxSection>
         </section>
 
         {/* Gallery */}
         <section id="gallery" className="section container-max">
-          <SectionHeader title="Gallery" subtitle="Snapshots from workshops, meetups, and hackathons." center />
-          <GalleryGrid />
+          <ParallaxSection speed={0.06}>
+            <SectionHeader title="Gallery" subtitle="Snapshots from workshops, meetups, and hackathons." center />
+            <GalleryGrid />
+          </ParallaxSection>
         </section>
 
         {/* Contact */}
