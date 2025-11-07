@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 import { JOIN_LINK } from '@/data/content';
 import SparkHover from './SparkHover';
 import ThemeToggle from './ThemeToggle';
-import EffectsToggle from './EffectsToggle';
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -84,7 +83,6 @@ export default function Navbar() {
             );
           })}
           <ThemeToggle />
-          <EffectsToggle />
           <SparkHover density={1.4}>
             <a 
               href={JOIN_LINK.href} 
@@ -134,9 +132,8 @@ export default function Navbar() {
                 </a>
               );
             })}
-            <div className="flex items-center gap-3 px-4 pt-2">
+            <div className="px-4 pt-2">
               <ThemeToggle />
-              <EffectsToggle />
             </div>
             <SparkHover density={1.2}>
               <a 

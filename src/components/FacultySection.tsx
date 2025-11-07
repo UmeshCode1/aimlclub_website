@@ -5,7 +5,7 @@ import SectionHeader from './SectionHeader';
 
 export default function FacultySection() {
   return (
-    <section id="faculty" className="py-20 md:py-28">
+    <section id="faculty" data-accent-index="1" className="py-20 md:py-28">
       <div className="container-max">
         <SectionHeader
           title="Faculty Mentors"

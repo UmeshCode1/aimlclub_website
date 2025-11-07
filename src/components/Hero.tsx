@@ -37,7 +37,7 @@ export default function Hero() {
           className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight"
         >
           Innovating the Future with{' '}
-          <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent animate-pulse-slow">
+          <span className="text-shimmer font-bold">
             Intelligence
           </span>
           .
@@ -58,7 +58,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <SparkHover>
+          <SparkHover density={1.5}>
             <a href={JOIN_LINK.href} className="btn btn-primary group">
               {JOIN_LINK.label}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

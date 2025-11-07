@@ -15,7 +15,7 @@ export default function ParallaxSection({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const element = ref.current;
     if (!element) return;
@@ -28,7 +28,8 @@ export default function ParallaxSection({
       
       // Only apply parallax when section is in viewport
       if (rect.top < windowHeight && rect.bottom > 0) {
-        const intensity = media.matches ? 0.35 : 1; // auto-dial instead of disable
+  const manualReduced = document.documentElement.classList.contains('effects-reduced');
+  const intensity = (media.matches || manualReduced) ? 0.35 : 1; // auto-dial instead of disable
         const offset = (scrolled - elementTop + windowHeight) * speed * intensity;
         element.style.transform = `translateY(${offset}px)`;
       }
