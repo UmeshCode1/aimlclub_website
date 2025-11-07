@@ -6,9 +6,32 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import AccentThemeController from '@/components/AccentThemeController';
 import { Poppins, Space_Grotesk, Inter } from 'next/font/google';
 
-const poppins = Poppins({ subsets: ['latin'], weight: ['300','400','500','600','700'], variable: '--font-poppins' });
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], weight: ['400','500','600','700'], variable: '--font-space-grotesk' });
-const inter = Inter({ subsets: ['latin'], weight: ['400','500','600','700'], variable: '--font-inter' });
+const poppins = Poppins({ 
+  subsets: ['latin'], 
+  weight: ['300','400','500','600','700'], 
+  variable: '--font-poppins',
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial']
+});
+
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'], 
+  weight: ['400','500','600','700'], 
+  variable: '--font-space-grotesk',
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial']
+});
+
+const inter = Inter({ 
+  subsets: ['latin'], 
+  weight: ['400','500','600','700'], 
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial']
+});
 
 export const metadata: Metadata = {
   title: 'AI & Machine Learning Club – OCT',

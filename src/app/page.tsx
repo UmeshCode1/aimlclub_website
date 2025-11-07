@@ -10,20 +10,21 @@ import AboutCards from '@/components/AboutCards';
 import ScrollToTop from '@/components/ScrollToTop';
 import Tilt from '@/components/Tilt';
 import ParallaxSection from '@/components/ParallaxSection';
+import SkeletonLoader from '@/components/SkeletonLoader';
 import { TEAM, EVENTS, PROJECTS } from '@/data/content';
 
-// Dynamic imports for heavy components
+// Dynamic imports for heavy components with proper skeleton loaders
 const TeamSection = dynamic(() => import('../components/TeamSection'), {
-  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+  loading: () => <SkeletonLoader type="team" />
 });
 const FacultySection = dynamic(() => import('../components/FacultySection'), {
-  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+  loading: () => <SkeletonLoader type="faculty" />
 });
 const GalleryGrid = dynamic(() => import('@/components/GalleryGrid'), {
-  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+  loading: () => <SkeletonLoader type="gallery" />
 });
 const ContactSection = dynamic(() => import('@/components/ContactSection'), {
-  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
+  loading: () => <SkeletonLoader type="contact" />
 });
 
 export default function Page() {
