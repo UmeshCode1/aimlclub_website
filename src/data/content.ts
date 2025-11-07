@@ -56,7 +56,14 @@ export const FACULTY: FacultyMember[] = [
 
 export const TEAM: TeamMember[] = [
   { name: 'Vishal Kumar', role: 'President', bio: 'Leads club vision, partnerships, and strategic initiatives across campus.', linkedin: '#', x: '#' },
-  { name: 'Umesh Patel', role: 'Vice President', bio: 'Operations and growth. Helps plan workshops and inter-college collaborations.', linkedin: '#', github: '#' },
+  { 
+    name: 'Umesh Patel', 
+    role: 'Vice President', 
+    bio: 'Operations and growth. Helps plan workshops and inter-college collaborations.', 
+    linkedin: 'https://www.linkedin.com/in/umesh-patel-5647b42a4', 
+    github: 'https://github.com/UmeshCode1',
+    instagram: 'https://www.instagram.com/nycto_phile.i'
+  },
   { name: 'Prakhar Sahu', role: 'Media Relations', bio: 'Owns content, branding, and outreach across platforms.', instagram: '#', linkedin: '#' },
   { name: 'Aarchi Sharma', role: 'Event Head', bio: 'Curates learning tracks and coordinates end-to-end event execution.', linkedin: '#' },
   { name: 'Parul Ajit', role: 'Event Head', bio: 'Logistics and attendee experience for hackathons and meetups.', linkedin: '#' },
