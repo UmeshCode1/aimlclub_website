@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { JOIN_LINK } from '@/data/content';
 import SparkHover from './SparkHover';
 import ThemeToggle from './ThemeToggle';
@@ -42,7 +43,14 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all ${scrolled ? 'backdrop-blur bg-black/30 border-b border-white/10' : ''}`} role="banner">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'backdrop-blur-2xl bg-gradient-to-r from-black/70 via-black/55 to-black/70 border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]'
+          : 'bg-transparent'
+      }`}
+      role="banner"
+    >
       <nav className="container-max flex items-center justify-between h-16" aria-label="Primary">
         <Link href="#" aria-label="AI & ML Club – OCT Home" className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg">
           <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-neon-blue to-neon-pink shadow-neon" />
@@ -58,10 +66,16 @@ export default function Navbar() {
                 href={n.href}
                 role="menuitem"
                 aria-current={isActive ? 'page' : undefined}
-                className={`transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-md px-1 py-1 ${isActive ? 'text-white' : 'text-white/80 hover:text-white'}`}
+                className={`relative transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-md px-1 py-1 group ${
+                  isActive ? 'text-white' : 'text-white/70 hover:text-white'
+                }`}
               >
                 {n.label}
-                {isActive && <span className="block h-0.5 mt-1 rounded bg-gradient-to-r from-neon-blue to-neon-pink" />}
+                <span
+                  className={`absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink transition-all duration-300 ${
+                    isActive ? 'w-full left-0 translate-x-0' : 'w-0 group-hover:w-full'
+                  }`}
+                />
               </a>
             );
           })}
@@ -76,23 +90,48 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open && (
-        <div id="mobile-menu" className="md:hidden bg-black/80 backdrop-blur border-t border-white/10" role="dialog" aria-modal="true">
-          <div className="container-max py-4 flex flex-col gap-2" role="menu">
-            {navItems.map((n) => {
-              const isActive = active && n.href === `#${active}`;
-              return (
-                <a key={n.label} href={n.href} role="menuitem" aria-current={isActive ? 'page' : undefined} className={`px-2 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue ${isActive ? 'bg-white/10' : 'hover:bg-white/10'}`} onClick={() => setOpen(false)}>
-                  {n.label}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            className="md:hidden bg-black/80 backdrop-blur border-t border-white/10"
+            role="dialog"
+            aria-modal="true"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+          >
+            <div className="container-max py-4 flex flex-col gap-2" role="menu">
+              {navItems.map((n) => {
+                const isActive = active && n.href === `#${active}`;
+                return (
+                  <a
+                    key={n.label}
+                    href={n.href}
+                    role="menuitem"
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`px-2 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue transition-colors ${
+                      isActive ? 'bg-white/10' : 'hover:bg-white/10'
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {n.label}
+                  </a>
+                );
+              })}
+              <SparkHover>
+                <a
+                  href={JOIN_LINK.href}
+                  className="btn btn-primary w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue"
+                >
+                  {JOIN_LINK.label}
                 </a>
-              );
-            })}
-            <SparkHover>
-              <a href={JOIN_LINK.href} className="btn btn-primary w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
-            </SparkHover>
-          </div>
-        </div>
-      )}
+              </SparkHover>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

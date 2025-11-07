@@ -9,7 +9,7 @@ export default function Hero() {
   const Particles = dynamic(() => import('./Particles'), { ssr: false });
 
   return (
-    <section data-accent-index="0" className="relative pt-28 md:pt-36 pb-16 overflow-hidden">
+    <section data-accent-index="0" className="relative pt-28 md:pt-36 pb-16 overflow-hidden min-h-[90vh] flex items-center">
       {/* Animated grid + particles background */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
@@ -36,18 +36,19 @@ export default function Hero() {
           transition={{ delay: 0.1, duration: 0.7 }}
           className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight"
         >
-          Innovating the Future with{' '}
-          <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent animate-pulse-slow">
-            Intelligence
+          <span className="bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">Innovating the Future with</span>{' '}
+          <span className="relative inline-block mt-1">
+            <span className="absolute inset-0 blur-2xl opacity-60 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink rounded-md" aria-hidden />
+            <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold">Intelligence</span>
           </span>
-          .
+          <span className="text-white/80">.</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.7 }}
-          className="mt-6 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed"
+          className="mt-8 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed"
         >
           Workshops, projects, hackathons, and research—building the next generation of AI innovators at Oriental College of Technology.
         </motion.p>
@@ -86,9 +87,10 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + idx * 0.1 }}
-                className="card p-6 hover:shadow-neon-sm hover:scale-105 transition-all duration-300 group cursor-pointer"
+                className="card p-6 md:p-7 hover:shadow-neon hover:scale-[1.03] transition-all duration-300 group cursor-pointer relative overflow-hidden"
               >
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{i.icon}</div>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform relative z-10">{i.icon}</div>
                 <div className="text-sm text-white/60 uppercase tracking-wider">{i.k}</div>
                 <div className="mt-1 font-semibold text-white/90">{i.v}</div>
               </motion.div>
