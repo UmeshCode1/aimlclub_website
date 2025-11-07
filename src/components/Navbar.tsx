@@ -26,7 +26,7 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     // Scrollspy with IntersectionObserver
-    const ids = ['about','faculty','team','events','projects','gallery','contact'];
+  const ids = ['about','team','events','projects','gallery','contact'];
     const els = ids.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver((entries) => {
       const visible = entries
@@ -43,7 +43,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
+  <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? 'backdrop-blur-2xl bg-gradient-to-r from-black/70 via-black/55 to-black/70 border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]'
@@ -52,33 +52,37 @@ export default function Navbar() {
       role="banner"
     >
       <nav className="container-max flex items-center justify-between h-16" aria-label="Primary">
-        <Link href="#" aria-label="AI & ML Club – OCT Home" className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg">
+        <Link href="/" aria-label="AI & ML Club – OCT Home" className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg">
           <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-neon-blue to-neon-pink shadow-neon" />
           <span className="font-display text-lg md:text-xl tracking-tight bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent">AI & ML Club – OCT</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-6" role="menubar">
-          {navItems.map((n) => {
-            const isActive = active && n.href === `#${active}`;
-            return (
-              <a
-                key={n.label}
-                href={n.href}
-                role="menuitem"
-                aria-current={isActive ? 'page' : undefined}
-                className={`relative transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-md px-1 py-1 group ${
-                  isActive ? 'text-white' : 'text-white/70 hover:text-white'
-                }`}
-              >
-                {n.label}
-                <span
-                  className={`absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink transition-all duration-300 ${
-                    isActive ? 'w-full left-0 translate-x-0' : 'w-0 group-hover:w-full'
-                  }`}
-                />
-              </a>
-            );
-          })}
+        <div className="hidden md:flex items-center gap-6">
+          <ul className="flex items-center gap-6">
+            {navItems.map((n) => {
+              const isActive = active && n.href === `#${active}`;
+              return (
+                <li key={n.label}>
+                  <a
+                    href={n.href}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`relative inline-block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-md px-1 py-1 group ${
+                      isActive ? 'text-white' : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    <span className="relative">
+                      {n.label}
+                      <span
+                        className={`pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-gradient-to-r from-neon-blue to-neon-pink transition-transform duration-300 ${
+                          isActive ? 'scale-x-100' : 'group-hover:scale-x-100'
+                        }`}
+                      />
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
           <ThemeToggle />
           <SparkHover>
             <a href={JOIN_LINK.href} className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
