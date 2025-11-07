@@ -30,6 +30,13 @@ html {
   /* Hardware acceleration for smoother scrolling */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal scrollbar */
+  overflow-x: hidden;
+}
+
+body {
+  /* Prevent horizontal scrollbar */
+  overflow-x: hidden;
 }
 
 /* Optimize scroll performance */
