@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import PageTransition from '@/components/PageTransition';
 import ScrollProgress from '@/components/ScrollProgress';
+import ScrollToTop from '@/components/ScrollToTop';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import AccentThemeController from '@/components/AccentThemeController';
 import StructuredData from '@/components/StructuredData';
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-[#05060A] text-white font-sans antialiased selection:bg-neon-blue/40 selection:text-white">
         <ThemeProvider>
           <ScrollProgress />
+          <ScrollToTop />
           <a href="#main" className="skip-link">Skip to content</a>
           <AccentThemeController />
           <PageTransition>

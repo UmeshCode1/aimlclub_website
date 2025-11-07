@@ -76,18 +76,18 @@ export default function DeveloperModal({ isOpen, onClose }: DeveloperModalProps)
                       Umesh Patel
                     </h3>
                     <p className="text-white/70 text-sm mb-1">Vice President</p>
-                    <p className="text-white/50 text-xs">AI & Machine Learning Club – OCT</p>
+                    <p className="text-white/65 text-xs">AI & Machine Learning Club – OCT</p>
                   </div>
 
                   {/* Bio */}
-                  <p className="text-white/60 text-sm text-center leading-relaxed">
+                  <p className="text-white/75 text-sm text-center leading-relaxed">
                     Passionate developer and AI enthusiast dedicated to building innovative solutions 
                     and fostering a vibrant tech community at OCT.
                   </p>
 
                   {/* Social Links */}
                   <div className="w-full pt-4 border-t border-white/10">
-                    <p className="text-white/50 text-xs uppercase tracking-wider mb-3 text-center">Connect</p>
+                    <p className="text-white/65 text-xs uppercase tracking-wider mb-3 text-center">Connect</p>
                     <div className="grid grid-cols-2 gap-3">
                       <a
                         href="https://github.com/UmeshCode1"
@@ -131,7 +131,7 @@ export default function DeveloperModal({ isOpen, onClose }: DeveloperModalProps)
 
                   {/* Footer badge */}
                   <div className="text-center pt-2">
-                    <span className="text-xs text-white/40">
+                    <span className="text-xs text-white/55">
                       Website Developer • 2025
                     </span>
                   </div>

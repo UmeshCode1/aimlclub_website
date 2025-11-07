@@ -53,7 +53,7 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
 
         {/* Bio */}
         {member.bio && (
-          <p className="text-xs text-white/60 leading-relaxed line-clamp-2 group-hover:text-white/70 transition-colors">
+          <p className="text-xs text-white/75 leading-relaxed line-clamp-2 group-hover:text-white/80 transition-colors">
             {member.bio}
           </p>
         )}
@@ -65,7 +65,7 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
               <a 
                 href={member.linkedin} 
                 onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/60 hover:text-white transition-all"
+                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noreferrer"
@@ -77,7 +77,7 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
               <a 
                 href={member.github}
                 onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/60 hover:text-white transition-all"
+                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
                 aria-label="GitHub"
                 target="_blank"
                 rel="noreferrer"
@@ -89,7 +89,7 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
               <a 
                 href={member.instagram}
                 onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/60 hover:text-white transition-all"
+                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
                 aria-label="Instagram"
                 target="_blank"
                 rel="noreferrer"
@@ -101,7 +101,7 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
               <a 
                 href={member.x}
                 onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/60 hover:text-white transition-all"
+                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
                 aria-label="X"
                 target="_blank"
                 rel="noreferrer"

@@ -24,7 +24,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-white/60 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-6 shadow-neon-sm"
+          className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-white/75 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-6 shadow-neon-sm"
         >
           <Sparkles size={14} className="text-neon-blue" />
           AI & Machine Learning Club – OCT
@@ -91,7 +91,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="text-3xl mb-2 group-hover:scale-110 transition-transform relative z-10">{i.icon}</div>
-                <div className="text-sm text-white/60 uppercase tracking-wider">{i.k}</div>
+                <div className="text-sm text-white/75 uppercase tracking-wider">{i.k}</div>
                 <div className="mt-1 font-semibold text-white/90">{i.v}</div>
               </motion.div>
             ))}

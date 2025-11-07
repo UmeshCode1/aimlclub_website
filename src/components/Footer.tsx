@@ -3,6 +3,7 @@ import { Github, Instagram, Linkedin } from 'lucide-react';
 import { SOCIALS } from '@/data/content';
 import { useState } from 'react';
 import DeveloperModal from './DeveloperModal';
+import NewsletterSignup from './NewsletterSignup';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
@@ -25,9 +26,15 @@ export default function Footer() {
           transition={{ duration: 2.2, ease: 'easeOut', delay: 0.2 }}
           className="pointer-events-none absolute top-10 right-[-5rem] w-64 h-64 rounded-full bg-gradient-to-tr from-neon-pink/40 via-neon-purple/30 to-neon-blue/40 blur-[90px]" />
         <div className="container-max py-12 relative">
+          
+          {/* Newsletter Signup */}
+          <div className="mb-12 max-w-md mx-auto">
+            <NewsletterSignup />
+          </div>
+
           {/* Developer Credit - Clickable */}
           <div className="mb-8 text-center">
-            <p className="text-sm text-white/50 mb-3">Developed with ❤️ by</p>
+            <p className="text-sm text-white/65 mb-3">Developed with ❤️ by</p>
             <button
               onClick={() => setShowDevModal(true)}
               className="group inline-flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer border border-transparent hover:border-white/10"
@@ -36,7 +43,7 @@ export default function Footer() {
               <h3 className="text-xl font-bold bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent group-hover:scale-105 transition-transform">
                 Umesh Patel
               </h3>
-              <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">
+              <p className="text-sm text-white/75 group-hover:text-white/80 transition-colors">
                 Click to view details
               </p>
             </button>

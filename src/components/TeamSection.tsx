@@ -41,7 +41,7 @@ export default function TeamSection() {
       {/* Search and Role Filter */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-3xl mx-auto">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/55" />
           <input
             aria-label="Search team members"
             placeholder="Search by name..."
@@ -52,7 +52,7 @@ export default function TeamSection() {
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-white/65 hover:text-white transition"
               aria-label="Clear search"
             >
               <X size={16} />
@@ -74,7 +74,7 @@ export default function TeamSection() {
 
       {/* Results count */}
       {(query || activeRole !== 'All') && (
-        <div className="text-center text-sm text-white/60">
+        <div className="text-center text-sm text-white/75">
           Showing {filtered.length} of {TEAM.length} member{filtered.length !== 1 ? 's' : ''}
         </div>
       )}
@@ -94,7 +94,7 @@ export default function TeamSection() {
           />
         ))}
         {filtered.length === 0 && (
-          <div className="col-span-full text-center text-white/50 py-16">
+          <div className="col-span-full text-center text-white/65 py-16">
             <p className="text-lg">No team members found</p>
             <button
               onClick={() => {

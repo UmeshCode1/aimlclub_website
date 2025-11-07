@@ -28,11 +28,11 @@ export default function EventCard({ event, i }: { event: EventItem; i: number })
         {/* Header with status badge */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2">
-            <div className={`p-2 rounded-lg ${isUpcoming ? 'bg-neon-blue/20 text-neon-blue' : 'bg-white/5 text-white/50'} group-hover:scale-110 transition-transform duration-300`}>
+            <div className={`p-2 rounded-lg ${isUpcoming ? 'bg-neon-blue/20 text-neon-blue' : 'bg-white/5 text-white/65'} group-hover:scale-110 transition-transform duration-300`}>
               <CalendarDays size={20} />
             </div>
             <div>
-              <div className="text-xs text-white/50 uppercase tracking-wider">
+              <div className="text-xs text-white/65 uppercase tracking-wider">
                 {eventDate.toLocaleString('default', { month: 'short' })}
               </div>
               <div className="text-lg font-bold">
@@ -51,7 +51,7 @@ export default function EventCard({ event, i }: { event: EventItem; i: number })
             </motion.span>
           )}
           {isPast && (
-            <span className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-white/40 border border-white/10">
+            <span className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-white/55 border border-white/10">
               Past Event
             </span>
           )}
@@ -80,7 +80,7 @@ export default function EventCard({ event, i }: { event: EventItem; i: number })
               </a>
             </SparkHover>
           ) : (
-            <div className="text-xs text-white/40 flex items-center gap-2">
+            <div className="text-xs text-white/55 flex items-center gap-2">
               <Clock size={14} />
               {eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </div>

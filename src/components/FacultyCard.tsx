@@ -58,7 +58,7 @@ export default function FacultyCard({ member, index }: { member: FacultyMember; 
                 <span className="text-sm font-semibold">{member.designation}</span>
               </div>
               {member.department && (
-                <p className="text-xs text-white/60 mt-2">{member.department}</p>
+                <p className="text-xs text-white/75 mt-2">{member.department}</p>
               )}
             </div>
 
@@ -75,7 +75,7 @@ export default function FacultyCard({ member, index }: { member: FacultyMember; 
                 {member.qualifications.map((qual, idx) => (
                   <span 
                     key={idx}
-                    className="text-[10px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-white/60"
+                    className="text-[10px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-white/75"
                   >
                     {qual}
                   </span>

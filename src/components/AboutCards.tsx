@@ -45,7 +45,7 @@ export default function AboutCards() {
               <div className={`h-12 w-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center shadow-neon-sm group-hover:shadow-neon transition-shadow mb-3`}>
                 <Icon size={24} className="text-white" />
               </div>
-              <div className="text-sm uppercase tracking-wider text-white/50 font-semibold mb-2">{item.t}</div>
+              <div className="text-sm uppercase tracking-wider text-white/65 font-semibold mb-2">{item.t}</div>
               <div className="text-white/80 leading-relaxed">{item.d}</div>
             </div>
           </motion.div>

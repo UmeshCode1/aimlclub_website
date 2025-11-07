@@ -153,7 +153,7 @@ export default function ContactSection() {
             )}
           </AnimatePresence>
 
-          <p id="contact-helper" className="text-xs text-white/40">
+          <p id="contact-helper" className="text-xs text-white/55">
             * Required fields. Your data is handled securely and never shared.
           </p>
         </motion.form>
@@ -171,7 +171,7 @@ export default function ContactSection() {
               <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl group-hover:scale-110 transition-transform">
                 <Mail size={22} className="text-white" />
               </div>
-              <div className="text-sm text-white/60 uppercase tracking-wider">Email Us</div>
+              <div className="text-sm text-white/75 uppercase tracking-wider">Email Us</div>
             </div>
             <a 
               className="font-semibold text-white/90 hover:text-white transition-colors block" 
@@ -187,7 +187,7 @@ export default function ContactSection() {
               <div className="p-3 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl group-hover:scale-110 transition-transform">
                 <MapPin size={22} className="text-white" />
               </div>
-              <div className="text-sm text-white/60 uppercase tracking-wider">Visit Us</div>
+              <div className="text-sm text-white/75 uppercase tracking-wider">Visit Us</div>
             </div>
             <p className="text-white/80 leading-relaxed">
               Oriental College of Technology<br />
@@ -198,7 +198,7 @@ export default function ContactSection() {
 
           {/* Social Links Card */}
           <div className="card p-6 hover:shadow-neon transition-all duration-300">
-            <div className="text-sm text-white/60 uppercase tracking-wider mb-3">Connect With Us</div>
+            <div className="text-sm text-white/75 uppercase tracking-wider mb-3">Connect With Us</div>
             <div className="flex flex-col gap-2">
               <a 
                 href={SOCIALS.linkedin} 
