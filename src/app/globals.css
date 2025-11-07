@@ -88,27 +88,75 @@ body {
 
 /* Buttons */
 .btn {
-  @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium transition-all duration-300;
+  @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium transition-all duration-300 relative overflow-hidden;
+  transform: translateZ(0); /* Hardware acceleration */
 }
+
+/* Button ripple effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
 .btn-primary {
   @apply text-white shadow-neon hover:shadow-neon-strong;
   /* Override gradient with adaptive accents */
   background-image: linear-gradient(90deg, var(--accent-1), var(--accent-2)) !important;
 }
+
 .btn-primary:hover {
   background-image: linear-gradient(
     90deg,
     color-mix(in srgb, var(--accent-1) 85%, white),
     color-mix(in srgb, var(--accent-2) 85%, white)
   ) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 240, 255, 0.4);
 }
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
 .btn-ghost {
   @apply bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 hover:border-white/20 backdrop-blur;
 }
 
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Improved focus states for all buttons */
+.btn:focus-visible {
+  outline: 2px solid var(--accent-1);
+  outline-offset: 3px;
+}
+
 /* Card */
 .card { 
-  @apply bg-white/5 border border-white/10 rounded-xl shadow-lg backdrop-blur-sm relative overflow-hidden; 
+  @apply bg-white/5 border border-white/10 rounded-xl shadow-lg backdrop-blur-sm relative overflow-hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px -15px rgba(0, 240, 255, 0.3), 
+              0 10px 30px -10px rgba(139, 92, 246, 0.2);
 }
 
 /* Fancy gradient border on hover without layout shift */
@@ -180,6 +228,22 @@ body.ready #preloader { @apply opacity-0 pointer-events-none; transition: opacit
 @keyframes gridMove {
   0% { transform: translate(0, 0); }
   100% { transform: translate(50px, 50px); }
+}
+
+/* Mobile menu slide down animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out forwards;
 }
 
 /* Custom scrollbar */

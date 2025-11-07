@@ -33,11 +33,11 @@ export default function Page() {
       <Preloader />
       <Navbar />
       <ScrollToTop />
-      <main>
+      <main id="main" role="main">
         <Hero />
 
         {/* About */}
-  <section id="about" data-accent-index="0" className="section container-max">
+        <section id="about" data-accent-index="0" className="section container-max">
           <ParallaxSection speed={0.12}>
             <SectionHeader
               title="About the Club"
@@ -52,16 +52,24 @@ export default function Page() {
         <FacultySection />
 
         {/* Team */}
-        <section id="team" className="section container-max">
-          <SectionHeader title="Core Team" subtitle="Explore the people driving innovation and execution." center />
+        <section id="team" data-accent-index="3" className="section container-max">
+          <SectionHeader 
+            title="Core Team" 
+            subtitle="Meet the passionate students driving innovation and execution." 
+            center 
+          />
           <TeamSection />
         </section>
 
         {/* Events */}
-  <section id="events" data-accent-index="2" className="section container-max">
+        <section id="events" data-accent-index="2" className="section container-max">
           <ParallaxSection speed={0.1}>
-            <SectionHeader title="Events" subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." center />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <SectionHeader 
+              title="Events" 
+              subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." 
+              center 
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               {EVENTS.map((e: any, i: number) => (
                 <Tilt key={e.title + i}>
                   <EventCard event={e} i={i} />
@@ -72,10 +80,14 @@ export default function Page() {
         </section>
 
         {/* Projects */}
-  <section id="projects" data-accent-index="1" className="section container-max">
+        <section id="projects" data-accent-index="1" className="section container-max">
           <ParallaxSection speed={0.08}>
-            <SectionHeader title="Projects" subtitle="Open-source and research initiatives building practical AI solutions." center />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <SectionHeader 
+              title="Projects" 
+              subtitle="Open-source and research initiatives building practical AI solutions." 
+              center 
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               {PROJECTS.map((p: any, i: number) => (
                 <Tilt key={p.title}>
                   <ProjectCard project={p} i={i} />
@@ -86,9 +98,13 @@ export default function Page() {
         </section>
 
         {/* Gallery */}
-  <section id="gallery" data-accent-index="0" className="section container-max">
+        <section id="gallery" data-accent-index="0" className="section container-max">
           <ParallaxSection speed={0.06}>
-            <SectionHeader title="Gallery" subtitle="Snapshots from workshops, meetups, and hackathons." center />
+            <SectionHeader 
+              title="Gallery" 
+              subtitle="Snapshots from workshops, meetups, and hackathons." 
+              center 
+            />
             <GalleryGrid />
           </ParallaxSection>
         </section>
