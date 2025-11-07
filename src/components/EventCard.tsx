@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import type { EventItem } from '@/data/content';
 import { CalendarDays, ArrowRight, Clock, MapPin } from 'lucide-react';
+import SparkHover from './SparkHover';
 
 export default function EventCard({ event, i }: { event: EventItem; i: number }) {
   const eventDate = new Date(event.date);
@@ -69,13 +70,15 @@ export default function EventCard({ event, i }: { event: EventItem; i: number })
         {/* Footer */}
         <div className="flex items-center justify-between pt-2 border-t border-white/5">
           {event.registerUrl && isUpcoming ? (
-            <a 
-              href={event.registerUrl} 
-              className="btn btn-primary w-full text-sm group/btn justify-center"
-            >
-              Register Now
-              <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-            </a>
+            <SparkHover>
+              <a 
+                href={event.registerUrl} 
+                className="btn btn-primary w-full text-sm group/btn justify-center"
+              >
+                Register Now
+                <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+              </a>
+            </SparkHover>
           ) : (
             <div className="text-xs text-white/40 flex items-center gap-2">
               <Clock size={14} />

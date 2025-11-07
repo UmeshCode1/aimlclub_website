@@ -6,6 +6,10 @@
   --bg: #05060A;
   --card: #0B0E1A;
   --muted: #9BA3AF;
+  /* Adaptive accents */
+  --accent-1: #00F0FF; /* neon blue */
+  --accent-2: #8B5CF6; /* neon purple */
+  --accent-3: #FF1CF7; /* neon pink */
 }
 
 .light {
@@ -72,7 +76,16 @@ body {
   @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium transition-all duration-300;
 }
 .btn-primary {
-  @apply bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white shadow-neon hover:shadow-neon-strong;
+  @apply text-white shadow-neon hover:shadow-neon-strong;
+  /* Override gradient with adaptive accents */
+  background-image: linear-gradient(90deg, var(--accent-1), var(--accent-2)) !important;
+}
+.btn-primary:hover {
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent-1) 85%, white),
+    color-mix(in srgb, var(--accent-2) 85%, white)
+  ) !important;
 }
 .btn-ghost {
   @apply bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 hover:border-white/20 backdrop-blur;
@@ -90,7 +103,13 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(90deg, rgba(0,240,255,0) 0%, rgba(0,240,255,0.35) 35%, rgba(255,28,247,0.35) 65%, rgba(255,28,247,0) 100%);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent-1) 0%, transparent) 0%,
+    color-mix(in srgb, var(--accent-1) 35%, transparent) 35%,
+    color-mix(in srgb, var(--accent-2) 65%, transparent) 65%,
+    color-mix(in srgb, var(--accent-2) 0%, transparent) 100%
+  );
   -webkit-mask: 
     linear-gradient(#000 0 0) content-box, 
     linear-gradient(#000 0 0);
@@ -100,6 +119,19 @@ body {
   transition: opacity .35s ease;
 }
 .card:hover::after { opacity: 1; }
+
+/* Micro-spark trail */
+@keyframes spark-pop {
+  0% { transform: translate(var(--sx,0), var(--sy,0)) scale(1); opacity: 0.9; }
+  80% { transform: translate(calc(var(--sx,0) * 1.5), calc(var(--sy,0) * 1.5)) scale(0.6); opacity: 0.5; }
+  100% { transform: translate(calc(var(--sx,0) * 2), calc(var(--sy,0) * 2)) scale(0.2); opacity: 0; }
+}
+.sparkle-wrapper { position: relative; display: inline-block; }
+.spark { position: absolute; width: 6px; height: 6px; border-radius: 9999px; pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, var(--accent-1), transparent 70%);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent-1) 60%, transparent));
+  animation: spark-pop .7s ease-out forwards;
+}
 
 /* Hover raise utility */
 .hover-raise { transition: transform .35s ease, box-shadow .35s ease; }

@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import PageTransition from '@/components/PageTransition';
 import ScrollProgress from '@/components/ScrollProgress';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import AccentThemeController from '@/components/AccentThemeController';
 import { Poppins, Space_Grotesk, Inter } from 'next/font/google';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['300','400','500','600','700'], variable: '--font-poppins' });
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <ScrollProgress />
           <a href="#main" className="skip-link">Skip to content</a>
+          <AccentThemeController />
           <PageTransition>
             {children}
           </PageTransition>

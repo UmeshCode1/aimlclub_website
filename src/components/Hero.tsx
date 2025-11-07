@@ -2,13 +2,14 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import SparkHover from '@/components/SparkHover';
 import { JOIN_LINK } from '@/data/content';
 
 export default function Hero() {
   const Particles = dynamic(() => import('./Particles'), { ssr: false });
 
   return (
-    <section className="relative pt-28 md:pt-36 pb-16 overflow-hidden">
+    <section data-accent-index="0" className="relative pt-28 md:pt-36 pb-16 overflow-hidden">
       {/* Animated grid + particles background */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
@@ -57,10 +58,12 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a href={JOIN_LINK.href} className="btn btn-primary group">
-            {JOIN_LINK.label}
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          <SparkHover>
+            <a href={JOIN_LINK.href} className="btn btn-primary group">
+              {JOIN_LINK.label}
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </SparkHover>
           <a href="#about" className="btn btn-ghost">Learn More</a>
         </motion.div>
 

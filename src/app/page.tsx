@@ -36,7 +36,7 @@ export default function Page() {
         <Hero />
 
         {/* About */}
-        <section id="about" className="section container-max">
+  <section id="about" data-accent-index="0" className="section container-max">
           <ParallaxSection speed={0.12}>
             <SectionHeader
               title="About the Club"
@@ -57,7 +57,7 @@ export default function Page() {
         </section>
 
         {/* Events */}
-        <section id="events" className="section container-max">
+  <section id="events" data-accent-index="2" className="section container-max">
           <ParallaxSection speed={0.1}>
             <SectionHeader title="Events" subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." center />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -71,7 +71,7 @@ export default function Page() {
         </section>
 
         {/* Projects */}
-        <section id="projects" className="section container-max">
+  <section id="projects" data-accent-index="1" className="section container-max">
           <ParallaxSection speed={0.08}>
             <SectionHeader title="Projects" subtitle="Open-source and research initiatives building practical AI solutions." center />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -85,7 +85,7 @@ export default function Page() {
         </section>
 
         {/* Gallery */}
-        <section id="gallery" className="section container-max">
+  <section id="gallery" data-accent-index="0" className="section container-max">
           <ParallaxSection speed={0.06}>
             <SectionHeader title="Gallery" subtitle="Snapshots from workshops, meetups, and hackathons." center />
             <GalleryGrid />

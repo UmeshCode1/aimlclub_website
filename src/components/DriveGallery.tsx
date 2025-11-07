@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useState } from 'react';
+import BlurImage from './BlurImage';
 import { DRIVE_API_KEY, DRIVE_FOLDER_ID } from '../data/drive';
 import { motion } from 'framer-motion';
 
@@ -137,6 +138,7 @@ export default function DriveGallery(props: Props) {
         name: f.name,
         // Direct image link
         src: `https://drive.google.com/uc?id=${f.id}`,
+        placeholder: f.thumbnailLink ? `${f.thumbnailLink}` : undefined,
         href: f.webViewLink ?? `https://drive.google.com/file/d/${f.id}/view`,
       })),
     [files]
@@ -157,13 +159,7 @@ export default function DriveGallery(props: Props) {
           whileHover={{ scale: 1.03, y: -3 }}
           className="group aspect-video rounded-lg overflow-hidden border border-white/10 bg-white/5 relative"
         >
-          <img
-            src={img.src}
-            alt={img.name}
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            loading="lazy"
-            decoding="async"
-          />
+          <BlurImage src={img.src} placeholder={img.placeholder} alt={img.name} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           <div className="absolute bottom-2 left-2 right-2 text-xs text-white/90 truncate drop-shadow">
             {img.name}

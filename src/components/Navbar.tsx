@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { JOIN_LINK } from '@/data/content';
+import SparkHover from './SparkHover';
 import ThemeToggle from './ThemeToggle';
 
 const navItems = [
@@ -65,7 +66,9 @@ export default function Navbar() {
             );
           })}
           <ThemeToggle />
-          <a href={JOIN_LINK.href} className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
+          <SparkHover>
+            <a href={JOIN_LINK.href} className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
+          </SparkHover>
         </div>
 
         <button className="md:hidden p-2 rounded-lg hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue" onClick={() => setOpen((o) => !o)} aria-label="Toggle navigation menu" aria-expanded={open} aria-controls="mobile-menu">
@@ -84,7 +87,9 @@ export default function Navbar() {
                 </a>
               );
             })}
-            <a href={JOIN_LINK.href} className="btn btn-primary w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
+            <SparkHover>
+              <a href={JOIN_LINK.href} className="btn btn-primary w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
+            </SparkHover>
           </div>
         </div>
       )}
