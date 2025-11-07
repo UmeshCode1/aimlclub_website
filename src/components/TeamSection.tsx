@@ -2,7 +2,6 @@
 import { useMemo, useState } from 'react';
 import { TEAM, TeamMember, TeamRole } from '../data/content';
 import TeamCard from './TeamCard';
-import TeamMarquee from './TeamMarquee';
 import dynamic from 'next/dynamic';
 import { Search, X } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
@@ -39,9 +38,6 @@ export default function TeamSection() {
 
   return (
     <div className="space-y-8">
-      {/* Horizontal circular avatar marquee */}
-      <TeamMarquee members={TEAM} onOpen={setOpenMember} />
-
       {/* Search and Role Filter */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-3xl mx-auto">
         <div className="relative flex-1">
