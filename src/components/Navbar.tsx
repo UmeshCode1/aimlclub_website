@@ -43,26 +43,26 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'backdrop-blur-md bg-black/40 border-b border-white/10 shadow-lg' 
+          ? 'backdrop-blur-xl bg-black/60 border-b border-white/10 shadow-2xl shadow-neon-blue/5' 
           : 'bg-transparent'
       }`} 
       role="banner"
     >
-      <nav className="container-max flex items-center justify-between h-16 md:h-18" aria-label="Primary">
+      <nav className="container-max flex items-center justify-between h-20 md:h-24" aria-label="Primary">
         <Link 
           href="#" 
           aria-label="AI & ML Club – OCT Home" 
-          className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg p-1 transition-transform hover:scale-105"
+          className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-xl p-2 transition-all duration-300 hover:scale-105 group"
         >
-          <div className="h-8 w-8 md:h-10 md:w-10 rounded-lg bg-gradient-to-tr from-neon-blue to-neon-pink shadow-neon transition-all" />
-          <span className="font-display text-lg md:text-xl tracking-tight brand-gradient whitespace-nowrap">
-            AI & ML Club – OCT
+          <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-gradient-to-tr from-neon-blue via-neon-purple to-neon-pink shadow-neon group-hover:shadow-neon-strong transition-all duration-300 group-hover:rotate-6" />
+          <span className="font-display text-xl md:text-2xl tracking-tight brand-gradient whitespace-nowrap font-bold">
+            AI & ML Club
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-6" role="menubar">
+        <div className="hidden md:flex items-center gap-8" role="menubar">
           {navItems.map((n) => {
             const isActive = active && n.href === `#${active}`;
             return (
@@ -71,13 +71,15 @@ export default function Navbar() {
                 href={n.href}
                 role="menuitem"
                 aria-current={isActive ? 'page' : undefined}
-                className={`relative transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-md px-3 py-2 font-medium ${
-                  isActive ? 'text-white' : 'text-white/70 hover:text-white'
+                className={`relative transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue rounded-lg px-4 py-2 font-semibold group ${
+                  isActive ? 'text-white' : 'text-white/60 hover:text-white'
                 }`}
               >
                 {n.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink" />
+                {isActive ? (
+                  <span className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-neon-sm" />
+                ) : (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink group-hover:w-full transition-all duration-300" />
                 )}
               </a>
             );
@@ -86,7 +88,7 @@ export default function Navbar() {
           <SparkHover density={1.4}>
             <a 
               href={JOIN_LINK.href} 
-              className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue"
+              className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue shadow-neon hover:shadow-neon-strong"
             >
               {JOIN_LINK.label}
             </a>
@@ -94,7 +96,7 @@ export default function Navbar() {
         </div>
 
         <button 
-          className="md:hidden p-2 rounded-lg hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue transition-colors" 
+          className="md:hidden p-3 rounded-xl hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue transition-all duration-300 border border-white/10 hover:border-white/20" 
           onClick={() => setOpen((o) => !o)} 
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={open} 
@@ -108,11 +110,11 @@ export default function Navbar() {
       {open && (
         <div 
           id="mobile-menu" 
-          className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10 animate-slideDown" 
+          className="md:hidden bg-black/98 backdrop-blur-xl border-t border-white/10 animate-slideDown shadow-2xl" 
           role="dialog" 
           aria-modal="true"
         >
-          <div className="container-max py-6 flex flex-col gap-3" role="menu">
+          <div className="container-max py-8 flex flex-col gap-4" role="menu">
             {navItems.map((n) => {
               const isActive = active && n.href === `#${active}`;
               return (
@@ -121,24 +123,27 @@ export default function Navbar() {
                   href={n.href} 
                   role="menuitem" 
                   aria-current={isActive ? 'page' : undefined} 
-                  className={`px-4 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue ${
+                  className={`px-5 py-4 rounded-xl font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue flex items-center justify-between group ${
                     isActive 
-                      ? 'bg-white/10 text-white border-l-2 border-neon-blue' 
-                      : 'hover:bg-white/5 text-white/80 hover:text-white'
+                      ? 'bg-gradient-to-r from-white/10 to-white/5 text-white border-l-4 border-neon-blue shadow-neon-sm' 
+                      : 'hover:bg-white/5 text-white/70 hover:text-white border-l-4 border-transparent hover:border-white/20'
                   }`} 
                   onClick={() => setOpen(false)}
                 >
-                  {n.label}
+                  <span>{n.label}</span>
+                  {isActive && (
+                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink animate-pulse" />
+                  )}
                 </a>
               );
             })}
-            <div className="px-4 pt-2">
+            <div className="px-5 pt-4 pb-2 border-t border-white/10 mt-2">
               <ThemeToggle />
             </div>
             <SparkHover density={1.2}>
               <a 
                 href={JOIN_LINK.href} 
-                className="btn btn-primary w-full justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue mt-2"
+                className="btn btn-primary w-full justify-center text-base py-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue shadow-neon hover:shadow-neon-strong"
               >
                 {JOIN_LINK.label}
               </a>

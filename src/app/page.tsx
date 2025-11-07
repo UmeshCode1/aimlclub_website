@@ -7,7 +7,6 @@ import EventCard from '@/components/EventCard';
 import ProjectCard from '@/components/ProjectCard';
 import Preloader from '@/components/Preloader';
 import AboutCards from '@/components/AboutCards';
-import ScrollToTop from '@/components/ScrollToTop';
 import Tilt from '@/components/Tilt';
 import ParallaxSection from '@/components/ParallaxSection';
 import SkeletonLoader from '@/components/SkeletonLoader';
@@ -32,7 +31,6 @@ export default function Page() {
     <>
       <Preloader />
       <Navbar />
-      <ScrollToTop />
       <main id="main" role="main">
         <Hero />
 
