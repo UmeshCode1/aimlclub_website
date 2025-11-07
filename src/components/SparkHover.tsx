@@ -5,7 +5,13 @@ import { ReactElement, cloneElement, useCallback, useRef } from 'react';
  * Wrap any button/link to add lightweight micro-spark trail on hover.
  * Respects prefers-reduced-motion by reducing spawn rate and distance.
  */
-export default function SparkHover({ children }: { children: ReactElement<any> }) {
+interface SparkHoverProps {
+  children: ReactElement<{ onMouseMove?: (e: React.MouseEvent) => void }>;
+  density?: number; // 0.25 (low) .. 2 (high)
+  maxDistance?: number; // override travel distance
+}
+
+export default function SparkHover({ children, density = 1, maxDistance }: SparkHoverProps) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const lastTime = useRef(0);
 
@@ -15,7 +21,8 @@ export default function SparkHover({ children }: { children: ReactElement<any> }
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const now = performance.now();
-    const minGap = reduced ? 60 : 22; // ms between spawns
+  const baseGap = reduced ? 60 : 22;
+  const minGap = baseGap / Math.max(0.25, density); // higher density => smaller gap
     if (now - lastTime.current < minGap) return;
     lastTime.current = now;
 
@@ -30,22 +37,26 @@ export default function SparkHover({ children }: { children: ReactElement<any> }
 
     // random direction
     const angle = Math.random() * Math.PI * 2;
-    const dist = (reduced ? 6 : 12) + Math.random() * (reduced ? 6 : 16);
+  const baseDist = reduced ? 6 : 12;
+  const varDist = reduced ? 6 : 16;
+  const distRaw = baseDist + Math.random() * varDist;
+  const dist = maxDistance ? Math.min(distRaw, maxDistance) : distRaw;
     spark.style.setProperty('--sx', `${Math.cos(angle) * dist}px`);
     spark.style.setProperty('--sy', `${Math.sin(angle) * dist}px`);
 
     el.appendChild(spark);
     spark.addEventListener('animationend', () => spark.remove());
-  }, []);
+  }, [density, maxDistance]);
 
-  const child = cloneElement(children as any, {
+  const child = cloneElement(children, {
     onMouseMove: (e: React.MouseEvent) => {
-      // call original if present
-      // @ts-ignore
-      children.props?.onMouseMove?.(e);
+      const originalOnMouseMove = children.props?.onMouseMove;
+      if (originalOnMouseMove) {
+        originalOnMouseMove(e);
+      }
       onMove(e);
     }
-  } as any);
+  });
 
   return (
     <span ref={wrapRef} className="sparkle-wrapper">
