@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { TEAM, TeamMember, TeamRole } from '../data/content';
 import TeamCard from './TeamCard';
+import TeamMarquee from './TeamMarquee';
 import dynamic from 'next/dynamic';
 import { Filter, Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -109,7 +110,7 @@ export default function TeamSection() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       {/* Controls */}
       <div className="flex flex-col md:flex-row md:items-center gap-4">
         <div className="relative flex-1 max-w-md">
@@ -177,15 +178,20 @@ export default function TeamSection() {
       </AnimatePresence>
 
       {/* Results count */}
-      <div className="text-xs text-white/50">
-        Showing {filtered.length} member{filtered.length !== 1 && 's'}{activeRoles.size > 0 && ' • filtered'}
+      <div className="text-xs text-white/50 flex items-center gap-3">
+        <span>Showing {filtered.length} member{filtered.length !== 1 && 's'}{activeRoles.size > 0 && ' • filtered'}</span>
+        <span className="h-2 w-px bg-white/10" />
+        <span className="text-white/40">Scroll or drag carousel below</span>
       </div>
+
+      {/* Horizontal circular avatar marquee */}
+      <TeamMarquee members={filtered} onOpen={setOpenMember} />
 
       <div
         className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
         onKeyDown={onGridKey}
         role="list"
-        aria-label="Team members"
+        aria-label="Team member cards"
       >
         {filtered.map((m, i) => (
           <div

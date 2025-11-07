@@ -162,6 +162,33 @@ body {
   /* Hover raise utility */
   .hover-raise { transition: transform .35s ease, box-shadow .35s ease; }
   .hover-raise:hover { transform: translateY(-6px); }
+  /* Marquee styles */
+  .marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    --speed: 55s;
+  }
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: marquee var(--speed) linear infinite;
+    will-change: transform;
+    padding-left: 0.5rem;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, #05060A, rgba(5,6,10,0) 20%, rgba(5,6,10,0) 80%, #05060A);
+  }
 }
 
 /* Micro-spark trail */
