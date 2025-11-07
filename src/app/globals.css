@@ -61,6 +61,9 @@ body {
   /* Improve rendering performance */
   will-change: auto;
   transform: translateZ(0);
+  /* Prevent horizontal overflow */
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .light body {
@@ -153,17 +156,29 @@ body {
   outline-offset: 3px;
 }
 
-/* Card */
+/* Cards with enhanced hover effects */
 .card { 
   @apply bg-white/5 border border-white/10 rounded-xl shadow-lg backdrop-blur-sm relative overflow-hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateZ(0); /* Hardware acceleration */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
 }
 
 .card:hover {
   border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.08);
   box-shadow: 0 20px 60px -15px rgba(0, 240, 255, 0.3), 
               0 10px 30px -10px rgba(139, 92, 246, 0.2);
+  transform: translateZ(0) translateY(-4px);
 }
 
 /* Fancy gradient border on hover without layout shift */
@@ -226,10 +241,22 @@ body {
 .hover-raise { transition: transform .35s ease, box-shadow .35s ease; }
 .hover-raise:hover { transform: translateY(-6px); }
 
-/* Section spacing */
-.section { @apply py-16 sm:py-20 md:py-24; }
-.section-title { @apply font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight; }
-.section-sub { @apply text-white/70 max-w-2xl mt-3 text-lg; }
+/* Section spacing with improved structure */
+.section { 
+  @apply py-16 sm:py-20 md:py-24;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title { 
+  @apply font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight;
+  line-height: 1.2;
+}
+
+.section-sub { 
+  @apply text-white/70 max-w-2xl mt-3 text-lg;
+  line-height: 1.6;
+}
 
 /* Neon ring */
 .neon-ring { box-shadow: 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 20px rgba(0,240,255,0.15); }

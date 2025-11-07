@@ -34,11 +34,15 @@ export default function Tilt({
       const y = e.clientY - rect.top;
       const cx = rect.width / 2;
       const cy = rect.height / 2;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('effects-reduced');
-      const intensity = reduced ? 0.4 : 1; // auto-dial for reduced motion
-      const rx = ((y - cy) / cy) * maxTilt * intensity; // rotateX
-      const ry = ((x - cx) / cx) * -maxTilt * intensity; // rotateY
-      px = ry; py = rx;
+      
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const intensity = reduced ? 0.3 : 1;
+      
+      const rx = ((y - cy) / cy) * maxTilt * intensity;
+      const ry = ((x - cx) / cx) * -maxTilt * intensity;
+      px = ry; 
+      py = rx;
+      
       if (!raf) raf = requestAnimationFrame(apply);
     };
 

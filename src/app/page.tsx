@@ -31,11 +31,11 @@ export default function Page() {
     <>
       <Preloader />
       <Navbar />
-      <main id="main" role="main">
+      <main id="main" role="main" className="relative">
         <Hero />
 
-        {/* About */}
-        <section id="about" data-accent-index="0" className="section container-max">
+        {/* About Section */}
+        <section id="about" data-accent-index="0" className="section container-max relative">
           <ParallaxSection speed={0.12}>
             <SectionHeader
               title="About the Club"
@@ -46,11 +46,11 @@ export default function Page() {
           </ParallaxSection>
         </section>
 
-        {/* Faculty */}
+        {/* Faculty Section */}
         <FacultySection />
 
-        {/* Team */}
-        <section id="team" data-accent-index="3" className="section container-max">
+        {/* Team Section */}
+        <section id="team" data-accent-index="3" className="section container-max relative">
           <SectionHeader 
             title="Core Team" 
             subtitle="Meet the passionate students driving innovation and execution." 
@@ -59,8 +59,8 @@ export default function Page() {
           <TeamSection />
         </section>
 
-        {/* Events */}
-        <section id="events" data-accent-index="2" className="section container-max">
+        {/* Events Section */}
+        <section id="events" data-accent-index="2" className="section container-max relative">
           <ParallaxSection speed={0.1}>
             <SectionHeader 
               title="Events" 
@@ -69,7 +69,7 @@ export default function Page() {
             />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               {EVENTS.map((e: any, i: number) => (
-                <Tilt key={e.title + i}>
+                <Tilt key={e.title + i} maxTilt={6} scale={1.03}>
                   <EventCard event={e} i={i} />
                 </Tilt>
               ))}
@@ -77,8 +77,8 @@ export default function Page() {
           </ParallaxSection>
         </section>
 
-        {/* Projects */}
-        <section id="projects" data-accent-index="1" className="section container-max">
+        {/* Projects Section */}
+        <section id="projects" data-accent-index="1" className="section container-max relative">
           <ParallaxSection speed={0.08}>
             <SectionHeader 
               title="Projects" 
@@ -87,7 +87,7 @@ export default function Page() {
             />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               {PROJECTS.map((p: any, i: number) => (
-                <Tilt key={p.title}>
+                <Tilt key={p.title} maxTilt={6} scale={1.03}>
                   <ProjectCard project={p} i={i} />
                 </Tilt>
               ))}
@@ -95,8 +95,8 @@ export default function Page() {
           </ParallaxSection>
         </section>
 
-        {/* Gallery */}
-        <section id="gallery" data-accent-index="0" className="section container-max">
+        {/* Gallery Section */}
+        <section id="gallery" data-accent-index="0" className="section container-max relative">
           <ParallaxSection speed={0.06}>
             <SectionHeader 
               title="Gallery" 
@@ -107,7 +107,7 @@ export default function Page() {
           </ParallaxSection>
         </section>
 
-        {/* Contact */}
+        {/* Contact Section */}
         <ContactSection />
       </main>
       <Footer />
