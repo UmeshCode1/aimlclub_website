@@ -15,10 +15,14 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.05 * (i % 8), duration: 0.4 }}
+      whileHover={{ y: -8, scale: 1.03 }}
       onClick={() => onOpen?.(member)}
-      className="card p-6 text-left w-full hover:shadow-neon-sm transition-all duration-300 group cursor-pointer"
+      className="card p-6 text-left w-full hover:shadow-neon-lg transition-all duration-500 group cursor-pointer relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue/50"
       aria-label={`View ${member.name}'s profile`}
     >
+      {/* Unified animated overlay + glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-purple-500/5 to-neon-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="absolute -inset-1 bg-gradient-to-r from-neon-blue via-purple-500 to-neon-pink rounded-2xl blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
       <div className="flex flex-col items-center text-center gap-4">
         {/* Avatar */}
         <div className="relative">

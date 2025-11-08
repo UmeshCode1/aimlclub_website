@@ -25,6 +25,9 @@ const GalleryGrid = dynamic(() => import('@/components/GalleryGrid'), {
 const ContactSection = dynamic(() => import('@/components/ContactSection'), {
   loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-xl" />
 });
+const ModelDemo = dynamic(() => import('@/components/ModelDemo'), {
+  loading: () => <div className="h-64 animate-pulse bg-white/5 rounded-xl" />
+});
 
 export default function Page() {
   return (
@@ -60,11 +63,13 @@ export default function Page() {
   <section id="events" data-accent-index="2" className="section container-max">
           <ParallaxSection speed={0.1}>
             <SectionHeader title="Events" subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." center />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" role="list" aria-label="Events">
               {EVENTS.map((e: any, i: number) => (
-                <Tilt key={e.title + i}>
-                  <EventCard event={e} i={i} />
-                </Tilt>
+                <div role="listitem" key={e.title + i}>
+                  <Tilt>
+                    <EventCard event={e} i={i} />
+                  </Tilt>
+                </div>
               ))}
             </div>
           </ParallaxSection>
@@ -74,13 +79,23 @@ export default function Page() {
   <section id="projects" data-accent-index="1" className="section container-max">
           <ParallaxSection speed={0.08}>
             <SectionHeader title="Projects" subtitle="Open-source and research initiatives building practical AI solutions." center />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" role="list" aria-label="Projects">
               {PROJECTS.map((p: any, i: number) => (
-                <Tilt key={p.title}>
-                  <ProjectCard project={p} i={i} />
-                </Tilt>
+                <div role="listitem" key={p.title}>
+                  <Tilt>
+                    <ProjectCard project={p} i={i} />
+                  </Tilt>
+                </div>
               ))}
             </div>
+          </ParallaxSection>
+        </section>
+
+        {/* AI Playground */}
+        <section id="ai-playground" data-accent-index="2" className="section container-max">
+          <ParallaxSection speed={0.09}>
+            <SectionHeader title="AI Playground" subtitle="Try simple demos that illustrate how AI thinks—no setup required." center />
+            <ModelDemo />
           </ParallaxSection>
         </section>
 

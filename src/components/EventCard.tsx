@@ -16,7 +16,7 @@ export default function EventCard({ event, i }: { event: EventItem; i: number })
       viewport={{ once: true }}
       transition={{ delay: 0.05 * i, duration: 0.5 }}
       whileHover={{ y: -8, scale: 1.03 }}
-      className="card p-6 flex flex-col gap-4 hover:shadow-neon-lg transition-all duration-500 group relative overflow-hidden"
+      className="card p-6 flex flex-col gap-4 hover:shadow-neon-lg transition-all duration-500 group relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue/50"
     >
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-purple-500/5 to-neon-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

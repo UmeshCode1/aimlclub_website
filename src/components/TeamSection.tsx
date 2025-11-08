@@ -100,14 +100,19 @@ export default function TeamSection() {
         aria-label="Team members"
       >
         {loading
-          ? Array.from({ length: 8 }).map((_, i) => (<SkeletonCard key={`skeleton-${i}`} />))
+          ? Array.from({ length: 8 }).map((_, i) => (
+              <div role="listitem" key={`skeleton-${i}`}>
+                <SkeletonCard />
+              </div>
+            ))
           : filtered.map((m, i) => (
-              <TeamCard
-                key={m.name}
-                member={m}
-                i={i}
-                onOpen={setOpenMember}
-              />
+              <div role="listitem" key={m.name}>
+                <TeamCard
+                  member={m}
+                  i={i}
+                  onOpen={setOpenMember}
+                />
+              </div>
             ))}
         {filtered.length === 0 && (
           <div className="col-span-full text-center text-white/65 py-16">

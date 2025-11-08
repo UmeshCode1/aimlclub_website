@@ -6,6 +6,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import AccentThemeController from '@/components/AccentThemeController';
 import StructuredData from '@/components/StructuredData';
+import { Suspense } from 'react';
 import { Poppins, Space_Grotesk, Inter } from 'next/font/google';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['300','400','500','600','700'], variable: '--font-poppins' });
@@ -78,6 +79,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <PageTransition>
             {children}
           </PageTransition>
+          <Suspense fallback={null}>
+            {/* Client components imported directly */}
+            {/* eslint-disable-next-line @typescript-eslint/no-var-requires */}
+            {typeof window !== 'undefined' && (
+              <>
+                {require('@/components/Analytics').default()}
+                {require('@/components/WebVitals').default()}
+              </>
+            )}
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

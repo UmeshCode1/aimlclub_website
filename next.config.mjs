@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: { unoptimized: true },
+  images: {
+    // For GitHub Pages static export, keep unoptimized to avoid runtime image loader
+    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+  },
   experimental: {},
   output: 'export',
   trailingSlash: true,
