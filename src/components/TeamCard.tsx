@@ -1,5 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
+import Tooltip from './Tooltip';
 import type { TeamMember } from '../data/content';
 import Image from 'next/image';
 import { Linkedin, Github, Instagram, Twitter } from 'lucide-react';
@@ -62,52 +63,60 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
         {(member.linkedin || member.github || member.instagram || member.x) && (
           <div className="flex gap-2 pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             {member.linkedin && (
-              <a 
-                href={member.linkedin} 
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Linkedin size={14} />
-              </a>
+              <Tooltip content="LinkedIn">
+                <a 
+                  href={member.linkedin} 
+                  onClick={(e) => e.stopPropagation()}
+                  className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue/50"
+                  aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Linkedin size={14} />
+                </a>
+              </Tooltip>
             )}
             {member.github && (
-              <a 
-                href={member.github}
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
-                aria-label="GitHub"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Github size={14} />
-              </a>
+              <Tooltip content="GitHub">
+                <a 
+                  href={member.github}
+                  onClick={(e) => e.stopPropagation()}
+                  className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue/50"
+                  aria-label="GitHub"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Github size={14} />
+                </a>
+              </Tooltip>
             )}
             {member.instagram && (
-              <a 
-                href={member.instagram}
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
-                aria-label="Instagram"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Instagram size={14} />
-              </a>
+              <Tooltip content="Instagram">
+                <a 
+                  href={member.instagram}
+                  onClick={(e) => e.stopPropagation()}
+                  className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue/50"
+                  aria-label="Instagram"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Instagram size={14} />
+                </a>
+              </Tooltip>
             )}
             {member.x && (
-              <a 
-                href={member.x}
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all"
-                aria-label="X"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Twitter size={14} />
-              </a>
+              <Tooltip content="X (Twitter)">
+                <a 
+                  href={member.x}
+                  onClick={(e) => e.stopPropagation()}
+                  className="p-2 rounded-md bg-white/5 hover:bg-neon-blue/20 text-white/75 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue/50"
+                  aria-label="X"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Twitter size={14} />
+                </a>
+              </Tooltip>
             )}
           </div>
         )}

@@ -1,10 +1,11 @@
 "use client";
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { TEAM, TeamMember, TeamRole } from '../data/content';
 import TeamCard from './TeamCard';
 import dynamic from 'next/dynamic';
 import { Search, X } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
+import SkeletonCard from './SkeletonCard';
 
 const roleOrder: TeamRole[] = [
   'President',
@@ -27,6 +28,7 @@ export default function TeamSection() {
   const [query, setQuery] = useState('');
   const [activeRole, setActiveRole] = useState<TeamRole | 'All'>('All');
   const [openMember, setOpenMember] = useState<TeamMember | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const filtered: TeamMember[] = useMemo(() => {
     return TEAM.filter((m: TeamMember) => {
@@ -34,6 +36,18 @@ export default function TeamSection() {
       if (query && !m.name.toLowerCase().includes(query.toLowerCase())) return false;
       return true;
     }).sort((a: TeamMember, b: TeamMember) => roleOrder.indexOf(a.role) - roleOrder.indexOf(b.role) || a.name.localeCompare(b.name));
+  }, [query, activeRole]);
+
+  // Simulate loading on mount and when filters change for a smoother UX
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    const t = setTimeout(() => setLoading(false), 300);
+    return () => clearTimeout(t);
   }, [query, activeRole]);
 
   return (
@@ -85,14 +99,16 @@ export default function TeamSection() {
         role="list"
         aria-label="Team members"
       >
-        {filtered.map((m, i) => (
-          <TeamCard
-            key={m.name}
-            member={m}
-            i={i}
-            onOpen={setOpenMember}
-          />
-        ))}
+        {loading
+          ? Array.from({ length: 8 }).map((_, i) => (<SkeletonCard key={`skeleton-${i}`} />))
+          : filtered.map((m, i) => (
+              <TeamCard
+                key={m.name}
+                member={m}
+                i={i}
+                onOpen={setOpenMember}
+              />
+            ))}
         {filtered.length === 0 && (
           <div className="col-span-full text-center text-white/65 py-16">
             <p className="text-lg">No team members found</p>

@@ -1,12 +1,58 @@
 "use client";
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import SparkHover from '@/components/SparkHover';
 import { JOIN_LINK } from '@/data/content';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function Hero() {
   const Particles = dynamic(() => import('./Particles'), { ssr: false });
+  const prefersReducedMotion = useReducedMotion();
+
+  // Rotating/typed keyword logic
+  const keywords = useMemo(() => [
+    'Intelligence',
+    'Machine Learning',
+    'Deep Learning',
+    'Data Science'
+  ], []);
+  const [kwIndex, setKwIndex] = useState(0);
+  const [display, setDisplay] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      const id = setInterval(() => setKwIndex(i => (i + 1) % keywords.length), 2200);
+      return () => clearInterval(id);
+    }
+
+    const full = keywords[kwIndex];
+    const delta = deleting ? 40 : 80;
+    const doneTyping = !deleting && display === full;
+    const doneDeleting = deleting && display === '';
+
+    const timeout = setTimeout(() => {
+      if (doneTyping) {
+        setDeleting(true);
+        return;
+      }
+      if (doneDeleting) {
+        setDeleting(false);
+        setKwIndex(i => (i + 1) % keywords.length);
+        return;
+      }
+      const nextStr = deleting ? full.slice(0, display.length - 1) : full.slice(0, display.length + 1);
+      setDisplay(nextStr);
+    }, doneTyping ? 900 : delta);
+
+    return () => clearTimeout(timeout);
+  }, [display, deleting, kwIndex, keywords, prefersReducedMotion]);
+
+  // Keep display synced when reduced-motion toggles
+  useEffect(() => {
+    if (prefersReducedMotion) setDisplay(keywords[kwIndex]);
+  }, [prefersReducedMotion, kwIndex, keywords]);
 
   return (
     <section data-accent-index="0" className="relative pt-28 md:pt-36 pb-16 overflow-hidden min-h-[90vh] flex items-center">
@@ -39,7 +85,12 @@ export default function Hero() {
           <span className="bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">Innovating the Future with</span>{' '}
           <span className="relative inline-block mt-1">
             <span className="absolute inset-0 blur-2xl opacity-60 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink rounded-md" aria-hidden />
-            <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold">Intelligence</span>
+            <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold">
+              {prefersReducedMotion ? keywords[kwIndex] : display}
+            </span>
+            {!prefersReducedMotion && (
+              <span aria-hidden className="ml-0.5 inline-block h-[1.1em] w-[2px] align-[-0.18em] bg-white/80 animate-pulse" />
+            )}
           </span>
           <span className="text-white/80">.</span>
         </motion.h1>
