@@ -27,8 +27,7 @@ const ModelDemo = dynamic(() => import('@/components/ModelDemo'), {
   loading: () => <div className="h-64 animate-pulse bg-white/5 rounded-xl" />
 });
 const Tilt = dynamic(() => import('@/components/Tilt'), {
-  loading: () => <div className="h-full w-full rounded-xl" />,
-  ssr: false
+  loading: () => <div className="h-full w-full rounded-xl" />
 });
 const ParallaxSection = dynamic(() => import('@/components/ParallaxSection'), {
   loading: () => <div className="h-full w-full" />
