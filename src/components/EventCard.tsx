@@ -1,10 +1,11 @@
 "use client";
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import type { EventItem } from '@/data/content';
 import { CalendarDays, ArrowRight, Clock, MapPin } from 'lucide-react';
 import SparkHover from './SparkHover';
 
-export default function EventCard({ event, i }: { event: EventItem; i: number }) {
+function EventCardComponent({ event, i }: { event: EventItem; i: number }) {
   const eventDate = new Date(event.date);
   const isUpcoming = !event.past && eventDate > new Date();
   const isPast = event.past || eventDate < new Date();
@@ -90,3 +91,8 @@ export default function EventCard({ event, i }: { event: EventItem; i: number })
     </motion.div>
   );
 }
+
+const EventCard = memo(EventCardComponent);
+EventCard.displayName = 'EventCard';
+
+export default EventCard;

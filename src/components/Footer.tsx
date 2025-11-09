@@ -2,13 +2,14 @@
 import { Github, Instagram, Linkedin, BookOpen, CalendarDays, Code2 } from 'lucide-react';
 import { SOCIALS } from '@/data/content';
 import { useState } from 'react';
-import DeveloperModal from './DeveloperModal';
+import dynamic from 'next/dynamic';
 import NewsletterSignup from './NewsletterSignup';
 import { motion } from 'framer-motion';
 import Tooltip from './Tooltip';
 
 export default function Footer() {
   const [showDevModal, setShowDevModal] = useState(false);
+  const DeveloperModal = dynamic(() => import('./DeveloperModal'), { ssr: false });
 
   return (
     <>

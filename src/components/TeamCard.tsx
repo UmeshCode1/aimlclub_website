@@ -1,11 +1,14 @@
 "use client";
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import Tooltip from './Tooltip';
 import type { TeamMember } from '../data/content';
 import Image from 'next/image';
 import { Linkedin, Github, Instagram, Twitter } from 'lucide-react';
 
-export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i: number; onOpen?: (m: TeamMember) => void }) {
+type TeamCardProps = { member: TeamMember; i: number; onOpen?: (m: TeamMember) => void };
+
+function TeamCardComponent({ member, i, onOpen }: TeamCardProps) {
   const initials = member.name.split(' ').map((s: string) => s[0]).join('').slice(0,2).toUpperCase();
   
   return (
@@ -128,3 +131,8 @@ export default function TeamCard({ member, i, onOpen }: { member: TeamMember; i:
     </motion.button>
   );
 }
+
+const TeamCard = memo(TeamCardComponent);
+TeamCard.displayName = 'TeamCard';
+
+export default TeamCard;

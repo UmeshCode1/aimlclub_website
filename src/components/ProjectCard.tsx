@@ -1,9 +1,10 @@
 "use client";
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import type { ProjectItem } from '@/data/content';
 import { Github, ExternalLink, Code2, Star } from 'lucide-react';
 
-export default function ProjectCard({ project, i }: { project: ProjectItem; i: number }) {
+function ProjectCardComponent({ project, i }: { project: ProjectItem; i: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -82,3 +83,8 @@ export default function ProjectCard({ project, i }: { project: ProjectItem; i: n
     </motion.div>
   );
 }
+
+const ProjectCard = memo(ProjectCardComponent);
+ProjectCard.displayName = 'ProjectCard';
+
+export default ProjectCard;

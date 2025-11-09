@@ -8,8 +8,6 @@ import ProjectCard from '@/components/ProjectCard';
 import Preloader from '@/components/Preloader';
 import AboutCards from '@/components/AboutCards';
 import ScrollToTop from '@/components/ScrollToTop';
-import Tilt from '@/components/Tilt';
-import ParallaxSection from '@/components/ParallaxSection';
 import { TEAM, EVENTS, PROJECTS } from '@/data/content';
 
 // Dynamic imports for heavy components
@@ -27,6 +25,13 @@ const ContactSection = dynamic(() => import('@/components/ContactSection'), {
 });
 const ModelDemo = dynamic(() => import('@/components/ModelDemo'), {
   loading: () => <div className="h-64 animate-pulse bg-white/5 rounded-xl" />
+});
+const Tilt = dynamic(() => import('@/components/Tilt'), {
+  loading: () => <div className="h-full w-full rounded-xl" />,
+  ssr: false
+});
+const ParallaxSection = dynamic(() => import('@/components/ParallaxSection'), {
+  loading: () => <div className="h-full w-full" />
 });
 
 export default function Page() {
