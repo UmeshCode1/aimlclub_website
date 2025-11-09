@@ -18,42 +18,21 @@ export default function Hero() {
     'Data Science'
   ], []);
   const [kwIndex, setKwIndex] = useState(0);
-  const [display, setDisplay] = useState('');
-  const [deleting, setDeleting] = useState(false);
+  // Smooth crossfade (no per-letter typing)
+  const [display, setDisplay] = useState(keywords[0]);
   const longest = useMemo(() => keywords.reduce((a, b) => (a.length >= b.length ? a : b), ''), [keywords]);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      const id = setInterval(() => setKwIndex(i => (i + 1) % keywords.length), 2200);
-      return () => clearInterval(id);
-    }
+    const interval = setInterval(() => {
+      setKwIndex(i => (i + 1) % keywords.length);
+    }, 2600);
+    return () => clearInterval(interval);
+  }, [keywords]);
 
-    const full = keywords[kwIndex];
-    const delta = deleting ? 40 : 80;
-    const doneTyping = !deleting && display === full;
-    const doneDeleting = deleting && display === '';
-
-    const timeout = setTimeout(() => {
-      if (doneTyping) {
-        setDeleting(true);
-        return;
-      }
-      if (doneDeleting) {
-        setDeleting(false);
-        setKwIndex(i => (i + 1) % keywords.length);
-        return;
-      }
-      const nextStr = deleting ? full.slice(0, display.length - 1) : full.slice(0, display.length + 1);
-      setDisplay(nextStr);
-    }, doneTyping ? 900 : delta);
-
-    return () => clearTimeout(timeout);
-  }, [display, deleting, kwIndex, keywords, prefersReducedMotion]);
-
-  // Keep display synced when reduced-motion toggles
   useEffect(() => {
-    if (prefersReducedMotion) setDisplay(keywords[kwIndex]);
-  }, [prefersReducedMotion, kwIndex, keywords]);
+    // Trigger crossfade by simply swapping the full word
+    setDisplay(keywords[kwIndex]);
+  }, [kwIndex, keywords]);
 
   return (
     <section data-accent-index="0" className="relative pt-28 md:pt-36 pb-16 overflow-hidden min-h-[90vh] flex items-center">
@@ -89,12 +68,12 @@ export default function Hero() {
             {/* Reserve width to prevent layout shift while typing */}
             <span aria-hidden className="invisible font-extrabold select-none">{longest}</span>
             <span className="absolute inset-0 whitespace-nowrap">
-              <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold">
-                {prefersReducedMotion ? keywords[kwIndex] : display}
+              <span
+                className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold transition-opacity duration-700"
+                key={display}
+              >
+                {display}
               </span>
-              {!prefersReducedMotion && (
-                <span aria-hidden className="ml-0.5 inline-block h-[1.1em] w-[2px] align-[-0.18em] bg-white/80" style={{ animation: 'blink 1.2s steps(1,end) infinite' }} />
-              )}
             </span>
           </span>
           <span className="text-white/80">.</span>
