@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import NewsletterSignup from './NewsletterSignup';
 import { motion } from 'framer-motion';
 import Tooltip from './Tooltip';
+import Link from 'next/link';
 
 export default function Footer() {
   const [showDevModal, setShowDevModal] = useState(false);
@@ -66,7 +67,16 @@ export default function Footer() {
                 <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
                 <li><a href="#events" className="hover:text-white transition-colors flex items-center gap-1"><CalendarDays size={12} /> Events</a></li>
                 <li><a href="#projects" className="hover:text-white transition-colors flex items-center gap-1"><Code2 size={12} /> Projects</a></li>
-                <li><a href="/docs/ADVANCED_FEATURES" className="hover:text-white transition-colors">Docs</a></li>
+                <li>
+                  <a
+                    href="https://github.com/UmeshCode1/aimlclub_website/tree/main/docs"
+                    className="hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Docs
+                  </a>
+                </li>
               </ul>
             </div>
 
