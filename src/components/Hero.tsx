@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import SparkHover from '@/components/SparkHover';
@@ -68,12 +68,18 @@ export default function Hero() {
             {/* Reserve width to prevent layout shift while typing */}
             <span aria-hidden className="invisible font-extrabold select-none">{longest}</span>
             <span className="absolute inset-0 whitespace-nowrap">
-              <span
-                className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold transition-opacity duration-700"
-                key={display}
-              >
-                {display}
-              </span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={display}
+                  initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.5, ease: 'easeOut' }}
+                  className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold block"
+                >
+                  {display}
+                </motion.span>
+              </AnimatePresence>
             </span>
           </span>
           <span className="text-white/80">.</span>
