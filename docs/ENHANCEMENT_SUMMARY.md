@@ -2,6 +2,15 @@
 
 ## ✅ All Features Successfully Implemented
 
+### 0. 🔍 Latest (v1.3.0)
+**Status**: ✅ Completed
+
+- Projects Section: Added animated filter chips (multi-select AND logic) with live result count (aria-live) and smooth grid transitions.
+- Events Section: Introduced vertical timeline layout with gradient rail, timeline dots, and grouping for Upcoming vs Past.
+- Light Theme Polish: Layered radial background, refined card borders and text colors for better readability.
+- Accessibility: Semantic <time> elements for dates; list semantics and labels in timeline; focus-visible rings retained for chips.
+- Build: Verified static export build success.
+
 ### 1. 🎨 Section Entrance Parallax Effects
 **Status**: ✅ Completed
 

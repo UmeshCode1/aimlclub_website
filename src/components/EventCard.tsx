@@ -29,12 +29,14 @@ function EventCardComponent({ event, i }: { event: EventItem; i: number }) {
               <CalendarDays size={20} />
             </div>
             <div>
-              <div className="text-xs text-white/65 uppercase tracking-wider">
-                {eventDate.toLocaleString('default', { month: 'short' })}
-              </div>
-              <div className="text-lg font-bold">
-                {eventDate.getDate()}
-              </div>
+              <time dateTime={eventDate.toISOString()}>
+                <div className="text-xs text-white/65 uppercase tracking-wider">
+                  {eventDate.toLocaleString('default', { month: 'short' })}
+                </div>
+                <div className="text-lg font-bold">
+                  {eventDate.getDate()}
+                </div>
+              </time>
             </div>
           </div>
           
@@ -79,7 +81,9 @@ function EventCardComponent({ event, i }: { event: EventItem; i: number }) {
           ) : (
             <div className="text-xs text-white/55 flex items-center gap-2">
               <Clock size={14} />
-              {eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time dateTime={eventDate.toISOString()}>
+                {eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
             </div>
           )}
         </div>

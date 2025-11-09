@@ -56,13 +56,13 @@ export default function Footer() {
           <div className="pt-8 border-t border-white/10 grid gap-8 md:grid-cols-5 text-sm">
             {/* Column: About */}
             <div className="space-y-3 md:col-span-2">
-              <h4 className="text-white font-semibold tracking-tight">AI & ML Club – OCT</h4>
+              <h4 className="text-white font-semibold tracking-tight" id="footer-about-heading">AI & ML Club – OCT</h4>
               <p className="text-white/70 leading-relaxed text-xs max-w-sm">Driving innovation through hands-on learning, collaborative projects, and research exploration in Artificial Intelligence and Machine Learning.</p>
             </div>
 
             {/* Column: Resources */}
             <div className="space-y-3">
-              <h5 className="text-white/90 font-medium flex items-center gap-2"><BookOpen size={14} className="text-neon-blue" /> Resources</h5>
+              <h5 className="text-white/90 font-medium flex items-center gap-2" id="footer-resources-heading"><BookOpen size={14} className="text-neon-blue" /> Resources</h5>
               <ul className="space-y-2 text-white/65">
                 <li><a href="#about" className="hover:text-white transition-colors link-underline">About</a></li>
                 <li><a href="#events" className="hover:text-white transition-colors flex items-center gap-1 link-underline"><CalendarDays size={12} /> Events</a></li>
@@ -82,7 +82,7 @@ export default function Footer() {
 
             {/* Column: Connect */}
             <div className="space-y-3">
-              <h5 className="text-white/90 font-medium">Connect</h5>
+              <h5 className="text-white/90 font-medium" id="footer-connect-heading">Connect</h5>
               <div className="flex items-center gap-2 flex-wrap">
                 {[
                   { href: SOCIALS.linkedin, label: 'LinkedIn', icon: <Linkedin size={16} /> },
@@ -110,7 +110,7 @@ export default function Footer() {
 
             {/* Column: Newsletter */}
             <div className="space-y-3 md:col-span-1">
-              <h5 className="text-white/90 font-medium">Stay Updated</h5>
+              <h5 className="text-white/90 font-medium" id="footer-updates-heading">Stay Updated</h5>
               <NewsletterSignup />
             </div>
           </div>

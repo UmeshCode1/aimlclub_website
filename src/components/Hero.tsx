@@ -101,12 +101,12 @@ export default function Hero() {
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <SparkHover>
-            <a href={JOIN_LINK.href} className="btn btn-primary group">
+            <a href={JOIN_LINK.href} className="btn btn-primary group pressable">
               {JOIN_LINK.label}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </SparkHover>
-          <a href="#about" className="btn btn-ghost">Learn More</a>
+          <a href="#about" className="btn btn-ghost pressable">Learn More</a>
         </motion.div>
 
         {/* Stats cards */}

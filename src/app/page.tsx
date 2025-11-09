@@ -5,6 +5,8 @@ import SectionHeader from '@/components/SectionHeader';
 import Footer from '@/components/Footer';
 import EventCard from '@/components/EventCard';
 import ProjectCard from '@/components/ProjectCard';
+import ProjectsSection from '@/components/ProjectsSection';
+import EventsTimeline from '@/components/EventsTimeline';
 import Preloader from '@/components/Preloader';
 import AboutCards from '@/components/AboutCards';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -63,35 +65,19 @@ export default function Page() {
           <TeamSection />
         </section>
 
-        {/* Events */}
-  <section id="events" data-accent-index="2" className="section container-max">
+        {/* Events (Timeline) */}
+        <section id="events" data-accent-index="2" className="section container-max">
           <ParallaxSection speed={0.1}>
             <SectionHeader title="Events" subtitle="Engaging experiences—from fundamentals to advanced AI hackathons." center />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" role="list" aria-label="Events">
-              {EVENTS.map((e: any, i: number) => (
-                <div role="listitem" key={e.title + i}>
-                  <Tilt>
-                    <EventCard event={e} i={i} />
-                  </Tilt>
-                </div>
-              ))}
-            </div>
+            <EventsTimeline />
           </ParallaxSection>
         </section>
 
-        {/* Projects */}
-  <section id="projects" data-accent-index="1" className="section container-max">
+        {/* Projects (Filterable) */}
+        <section id="projects" data-accent-index="1" className="section container-max">
           <ParallaxSection speed={0.08}>
             <SectionHeader title="Projects" subtitle="Open-source and research initiatives building practical AI solutions." center />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" role="list" aria-label="Projects">
-              {PROJECTS.map((p: any, i: number) => (
-                <div role="listitem" key={p.title}>
-                  <Tilt>
-                    <ProjectCard project={p} i={i} />
-                  </Tilt>
-                </div>
-              ))}
-            </div>
+            <ProjectsSection />
           </ParallaxSection>
         </section>
 

@@ -102,9 +102,12 @@ body {
 }
 
 .light body {
-  background: radial-gradient(1200px 800px at 20% -10%, rgba(59,130,246,0.08), transparent),
-              radial-gradient(1000px 600px at 110% 10%, rgba(139,92,246,0.06), transparent),
-              #F8F9FA;
+  /* Light theme layered background: subtle noise + radial accents */
+  background:
+    linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+    radial-gradient(1000px 600px at 20% -10%, rgba(59,130,246,0.12), transparent 70%),
+    radial-gradient(900px 500px at 110% 10%, rgba(236,72,153,0.10), transparent 70%),
+    #F8F9FA;
   color: #1F2937;
 }
 
@@ -212,6 +215,19 @@ body {
   }
   .card:hover::after { opacity: 1; }
 
+  /* Light theme card adjustments */
+  .light .card { @apply bg-white border-gray-200 shadow-md; }
+  .light .card:hover { @apply shadow-lg; }
+  .light .card:focus-within { @apply ring-2 ring-purple-400/50; }
+  .light .card p { @apply text-gray-600; }
+  .light .card h3, .light .card h4 { @apply text-gray-800; }
+  .light .card-interactive::before { background-image: linear-gradient(to bottom right, rgba(63,131,248,0.12), rgba(168,85,247,0.08), rgba(236,72,153,0.12)); }
+  .light .card-interactive::after { background-image: linear-gradient(90deg, rgba(59,130,246,0.6), rgba(168,85,247,0.6), rgba(236,72,153,0.6)); }
+  .light .link-underline::after { background-image: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899); }
+  .light .btn-ghost { @apply bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300; }
+  .light .btn-outline { @apply border-gray-300 text-gray-700 hover:bg-gray-100; }
+  .light .section-sub { @apply text-gray-600; }
+
   /* Section spacing */
   .section { @apply py-16 sm:py-20 md:py-24; }
   .section-title { @apply font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight; }
@@ -222,6 +238,17 @@ body {
   /* Hover raise utility */
   .hover-raise { transition: transform .35s ease, box-shadow .35s ease; }
   .hover-raise:hover { transform: translateY(-6px); }
+  /* Depth / press micro-interaction */
+  .pressable { transition: transform .25s ease, box-shadow .35s ease; transform-style: preserve-3d; }
+  .pressable:hover { transform: translateY(-3px); }
+  .pressable:active { transform: translateY(-1px) scale(.985); }
+  /* Optional tilt wrapper */
+  .tilt-on-hover { perspective: 900px; }
+  .tilt-on-hover > .tilt-child { transition: transform .6s cubic-bezier(.19,1,.22,1); transform-style: preserve-3d; }
+  .tilt-on-hover:hover > .tilt-child { transform: rotateX(8deg) rotateY(-6deg) translateZ(8px); }
+  @media (prefers-reduced-motion: reduce) {
+    .pressable, .pressable:hover, .pressable:active, .tilt-on-hover > .tilt-child, .tilt-on-hover:hover > .tilt-child { transform: none !important; }
+  }
   /* Marquee styles */
   .marquee {
     position: relative;

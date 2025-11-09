@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.3.0 - 2025-11-09
+### Added
+- Projects: filter chips (multi-select, animated) with live result count and ARIA announcements.
+- Events: vertical timeline layout with gradient rail and dots, grouped into Upcoming and Past.
+- Light theme polish: layered radial background, card/border/text adjustments for readability.
+
+### Accessibility
+- Added aria-live status to project filters; improved list semantics and labels in Events timeline.
+- Wrapped event dates in semantic <time> elements.
+
+### Build
+- Verified static export build passes.
+
+---
+
 ## 1.2.0 - 2025-11-09
 ### Added
 - Hero rotating/typed keyword with reduced-motion fallback.

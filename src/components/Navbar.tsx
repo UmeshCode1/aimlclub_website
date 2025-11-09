@@ -85,7 +85,7 @@ export default function Navbar() {
           </ul>
           <ThemeToggle />
           <SparkHover>
-            <a href={JOIN_LINK.href} className="btn btn-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
+            <a href={JOIN_LINK.href} className="btn btn-primary pressable focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">{JOIN_LINK.label}</a>
           </SparkHover>
         </div>
 
@@ -127,7 +127,7 @@ export default function Navbar() {
               <SparkHover>
                 <a
                   href={JOIN_LINK.href}
-                  className="btn btn-primary w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue"
+                  className="btn btn-primary w-fit pressable focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue"
                 >
                   {JOIN_LINK.label}
                 </a>
