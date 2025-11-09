@@ -8,6 +8,60 @@
   50%, 100% { opacity: 0; }
 }
 
+@layer components {
+  /* Reusable interactive card styling */
+  .card-interactive {
+    @apply relative overflow-hidden transition-all duration-500 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue/50;
+  }
+  .card-interactive::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    background-image: linear-gradient(to bottom right, rgba(63, 131, 248, 0.10), rgba(168, 85, 247, 0.05), rgba(236, 72, 153, 0.10));
+    pointer-events: none;
+  }
+  .card-interactive::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 1rem;
+    filter: blur(18px);
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    background-image: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899);
+    pointer-events: none;
+  }
+  .card-interactive:hover::before,
+  .card-interactive:hover::after,
+  .card-interactive:focus-within::before,
+  .card-interactive:focus-within::after {
+    opacity: 0.2;
+  }
+
+  /* Animated underline utility for links */
+  .link-underline {
+    @apply relative inline-block no-underline transition-colors;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+    background-image: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899);
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
 :root {
   --bg: #05060A;
   --card: #0B0E1A;

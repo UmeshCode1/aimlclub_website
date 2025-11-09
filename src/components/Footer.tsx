@@ -64,13 +64,13 @@ export default function Footer() {
             <div className="space-y-3">
               <h5 className="text-white/90 font-medium flex items-center gap-2"><BookOpen size={14} className="text-neon-blue" /> Resources</h5>
               <ul className="space-y-2 text-white/65">
-                <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#events" className="hover:text-white transition-colors flex items-center gap-1"><CalendarDays size={12} /> Events</a></li>
-                <li><a href="#projects" className="hover:text-white transition-colors flex items-center gap-1"><Code2 size={12} /> Projects</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors link-underline">About</a></li>
+                <li><a href="#events" className="hover:text-white transition-colors flex items-center gap-1 link-underline"><CalendarDays size={12} /> Events</a></li>
+                <li><a href="#projects" className="hover:text-white transition-colors flex items-center gap-1 link-underline"><Code2 size={12} /> Projects</a></li>
                 <li>
                   <a
                     href="https://github.com/UmeshCode1/aimlclub_website/tree/main/docs"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-white transition-colors link-underline"
                     target="_blank"
                     rel="noreferrer"
                   >
