@@ -85,6 +85,8 @@ export interface EventItem {
   description: string;
   registerUrl?: string;
   past?: boolean;
+  skillLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
+  topics?: string[];
 }
 
 export const EVENTS: EventItem[] = [
@@ -93,21 +95,27 @@ export const EVENTS: EventItem[] = [
     date: '2025-11-20',
     description: 'Hands-on intro to AI/ML fundamentals and Python notebooks.',
     registerUrl: '#',
-    poster: '/assets/poster-ai-intro.svg'
+    poster: '/assets/poster-ai-intro.svg',
+    skillLevel: 'Beginner',
+    topics: ['Python', 'ML Basics', 'NumPy']
   },
   {
     title: 'Hack the Future – 24h Hackathon',
     date: '2025-12-15',
     description: 'Collaborative hackathon focused on applied AI for social good.',
     registerUrl: '#',
-    poster: '/assets/poster-hack.svg'
+    poster: '/assets/poster-hack.svg',
+    skillLevel: 'All Levels',
+    topics: ['Hackathon', 'Team Project', 'AI Applications']
   },
   {
     title: 'LLM Study Jam',
     date: '2025-08-12',
     description: 'A completed study jam covering transformers and prompt engineering.',
     past: true,
-    poster: '/assets/poster-llm.svg'
+    poster: '/assets/poster-llm.svg',
+    skillLevel: 'Intermediate',
+    topics: ['Transformers', 'LLMs', 'Prompt Engineering']
   }
 ];
 
@@ -117,6 +125,8 @@ export interface ProjectItem {
   tags: string[];
   github?: string;
   image?: string;
+  difficulty?: 'Beginner' | 'Intermediate' | 'Advanced';
+  category?: 'Vision' | 'NLP' | 'ML' | 'DL' | 'RL';
 }
 
 export const PROJECTS: ProjectItem[] = [
@@ -125,21 +135,27 @@ export const PROJECTS: ProjectItem[] = [
     description: 'Face-recognition powered attendance system with privacy-first design.',
     tags: ['Vision', 'OpenCV', 'Python'],
     github: 'https://github.com/your-org/campusvision',
-    image: '/assets/project-1.svg'
+    image: '/assets/project-1.svg',
+    difficulty: 'Intermediate',
+    category: 'Vision'
   },
   {
     title: 'MediAssist: HealthBot',
     description: 'LLM-based assistant for preliminary triage and health FAQs.',
     tags: ['LLM', 'Next.js', 'RAG'],
     github: 'https://github.com/your-org/mediassist',
-    image: '/assets/project-2.svg'
+    image: '/assets/project-2.svg',
+    difficulty: 'Advanced',
+    category: 'NLP'
   },
   {
     title: 'EcoSense: Waste Classifier',
     description: 'Mobile-friendly classifier for sorting recyclables in campus.',
     tags: ['TensorFlow', 'MobileNet'],
     github: 'https://github.com/your-org/ecosense',
-    image: '/assets/project-3.svg'
+    image: '/assets/project-3.svg',
+    difficulty: 'Beginner',
+    category: 'Vision'
   }
 ];
 

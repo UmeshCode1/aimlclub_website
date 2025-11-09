@@ -1,6 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
-import { Target, Rocket, Trophy } from 'lucide-react';
+import { Target, Rocket, Trophy, Cpu, Brain, Sparkles } from 'lucide-react';
+import dynamic from 'next/dynamic';
 
 const items = [
   {
@@ -24,6 +25,8 @@ const items = [
 ];
 
 export default function AboutCards() {
+  const NeuralPattern = dynamic(() => import('./NeuralPattern'), { ssr: false });
+  
   return (
     <div className="grid md:grid-cols-3 gap-6">
       {items.map((item, idx) => {
@@ -38,6 +41,9 @@ export default function AboutCards() {
             whileHover={{ y: -4, scale: 1.02 }}
             className="card p-6 flex flex-col gap-4 hover:shadow-neon transition-all duration-300 group relative overflow-hidden"
           >
+            {/* Neural pattern background */}
+            <NeuralPattern density={4} className="opacity-0 group-hover:opacity-10 transition-opacity duration-700" />
+            
             {/* Gradient background on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             

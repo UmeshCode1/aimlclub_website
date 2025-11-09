@@ -8,6 +8,8 @@ import { useEffect, useMemo, useState } from 'react';
 
 export default function Hero() {
   const Particles = dynamic(() => import('./Particles'), { ssr: false });
+  const NeuralPattern = dynamic(() => import('./NeuralPattern'), { ssr: false });
+  const DataFlow = dynamic(() => import('./DataFlow'), { ssr: false });
   const prefersReducedMotion = useReducedMotion();
 
   // Rotating/typed keyword logic
@@ -36,12 +38,28 @@ export default function Hero() {
 
   return (
     <section data-accent-index="0" className="relative pt-28 md:pt-36 pb-16 overflow-hidden min-h-[90vh] flex items-center">
-      {/* Animated grid + particles background */}
+      {/* Animated grid + particles background with AI/ML patterns */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        {/* Circuit board grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
+        
+        {/* Neural network pattern */}
+        {!prefersReducedMotion && <NeuralPattern density={8} className="opacity-20" />}
+        
+        {/* Data flow animations */}
+        {!prefersReducedMotion && (
+          <>
+            <DataFlow direction="horizontal" className="opacity-30" />
+            <DataFlow direction="vertical" className="opacity-20" />
+          </>
+        )}
+        
+        {/* Gradient orbs */}
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[720px] w-[720px] rounded-full bg-gradient-to-b from-neon-blue/30 to-transparent blur-3xl animate-pulse-slow" />
         <div className="absolute top-40 -left-20 h-72 w-72 rounded-full bg-neon-pink/20 blur-3xl animate-pulse-slow" />
         <div className="absolute top-20 -right-10 h-80 w-80 rounded-full bg-neon-purple/20 blur-3xl animate-float" />
+        
+        {/* Tech particles */}
         <Particles density={0.00009} />
       </div>
 
@@ -109,7 +127,7 @@ export default function Hero() {
           <a href="#about" className="btn btn-ghost pressable">Learn More</a>
         </motion.div>
 
-        {/* Stats cards */}
+        {/* Stats cards with ML metrics theme */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -118,10 +136,10 @@ export default function Hero() {
         >
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { k: 'Workshops', v: 'Hands-on', icon: '🎓' },
-              { k: 'Projects', v: 'Open-source', icon: '💡' },
-              { k: 'Hackathons', v: 'Competitive', icon: '🏆' },
-              { k: 'Research', v: 'Impactful', icon: '🔬' }
+              { k: 'Workshops', v: 'Hands-on', icon: '🎓', metric: 'Training' },
+              { k: 'Projects', v: 'Open-source', icon: '💡', metric: 'Building' },
+              { k: 'Hackathons', v: 'Competitive', icon: '🏆', metric: 'Competing' },
+              { k: 'Research', v: 'Impactful', icon: '🔬', metric: 'Innovating' }
             ].map((i, idx) => (
               <motion.div
                 key={i.k}
@@ -131,8 +149,17 @@ export default function Hero() {
                 className="card p-6 md:p-7 hover:shadow-neon hover:scale-[1.03] transition-all duration-300 group cursor-pointer relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                {/* ML-themed progress indicator */}
+                <div className="absolute top-2 right-2 flex items-center gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                  <div className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" style={{ animationDelay: '0.2s' }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-neon-pink animate-pulse" style={{ animationDelay: '0.4s' }} />
+                </div>
+                
                 <div className="text-3xl mb-2 group-hover:scale-110 transition-transform relative z-10">{i.icon}</div>
-                <div className="text-sm text-white/75 uppercase tracking-wider">{i.k}</div>
+                <div className="text-xs text-white/50 uppercase tracking-widest mb-1">{i.metric}</div>
+                <div className="text-sm text-white/75 uppercase tracking-wider font-semibold">{i.k}</div>
                 <div className="mt-1 font-semibold text-white/90">{i.v}</div>
               </motion.div>
             ))}

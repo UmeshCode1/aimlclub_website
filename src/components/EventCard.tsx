@@ -10,6 +10,13 @@ function EventCardComponent({ event, i }: { event: EventItem; i: number }) {
   const isUpcoming = !event.past && eventDate > new Date();
   const isPast = event.past || eventDate < new Date();
   
+  const skillLevelColors = {
+    'Beginner': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+    'Intermediate': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+    'Advanced': 'bg-rose-500/20 text-rose-400 border-rose-500/30',
+    'All Levels': 'bg-blue-500/20 text-blue-400 border-blue-500/30'
+  };
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -62,9 +69,25 @@ function EventCardComponent({ event, i }: { event: EventItem; i: number }) {
         </h3>
         
         {/* Description */}
-        <p className="text-sm text-white/70 leading-relaxed flex-grow line-clamp-3 group-hover:text-white/80 transition-colors">
+        <p className="text-sm text-white/70 leading-relaxed line-clamp-3 group-hover:text-white/80 transition-colors">
           {event.description}
         </p>
+        
+        {/* ML Topics & Skill Level */}
+        {(event.topics || event.skillLevel) && (
+          <div className="flex flex-wrap gap-2 items-center">
+            {event.topics && event.topics.slice(0, 3).map((topic) => (
+              <span key={topic} className="text-xs px-2 py-1 rounded bg-white/5 text-white/60 border border-white/10">
+                {topic}
+              </span>
+            ))}
+            {event.skillLevel && (
+              <span className={`text-xs px-2 py-1 rounded border ${skillLevelColors[event.skillLevel]}`}>
+                {event.skillLevel}
+              </span>
+            )}
+          </div>
+        )}
         
         {/* Footer */}
         <div className="flex items-center justify-between pt-2 border-t border-white/5">

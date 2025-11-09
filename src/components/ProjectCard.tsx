@@ -5,6 +5,20 @@ import type { ProjectItem } from '@/data/content';
 import { Github, ExternalLink, Code2, Star } from 'lucide-react';
 
 function ProjectCardComponent({ project, i }: { project: ProjectItem; i: number }) {
+  const difficultyColors = {
+    Beginner: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40',
+    Intermediate: 'bg-amber-500/20 text-amber-400 border-amber-500/40',
+    Advanced: 'bg-rose-500/20 text-rose-400 border-rose-500/40'
+  };
+
+  const categoryIcons = {
+    Vision: '👁️',
+    NLP: '💬',
+    ML: '🤖',
+    DL: '🧠',
+    RL: '🎮'
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,10 +42,19 @@ function ProjectCardComponent({ project, i }: { project: ProjectItem; i: number 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#05060A] via-[#05060A]/50 to-transparent" />
             
-            {/* Floating tag indicator */}
-            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
-              <Code2 size={14} className="text-neon-purple" />
-              <span className="text-xs font-medium">{project.tags.length} Tech</span>
+            {/* ML Category & Difficulty badges */}
+            <div className="absolute top-3 right-3 flex flex-col gap-2">
+              {project.category && (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-sm border border-neon-purple/30">
+                  <span className="text-sm">{categoryIcons[project.category]}</span>
+                  <span className="text-xs font-medium text-neon-purple">{project.category}</span>
+                </div>
+              )}
+              {project.difficulty && (
+                <div className={`px-3 py-1.5 rounded-full border text-xs font-medium backdrop-blur-sm ${difficultyColors[project.difficulty]}`}>
+                  {project.difficulty}
+                </div>
+              )}
             </div>
           </div>
         )}
