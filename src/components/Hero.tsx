@@ -20,6 +20,7 @@ export default function Hero() {
   const [kwIndex, setKwIndex] = useState(0);
   const [display, setDisplay] = useState('');
   const [deleting, setDeleting] = useState(false);
+  const longest = useMemo(() => keywords.reduce((a, b) => (a.length >= b.length ? a : b), ''), [keywords]);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -83,14 +84,18 @@ export default function Hero() {
           className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight"
         >
           <span className="bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">Innovating the Future with</span>{' '}
-          <span className="relative inline-block mt-1">
+          <span className="relative inline-block mt-1 align-baseline">
             <span className="absolute inset-0 blur-2xl opacity-60 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink rounded-md" aria-hidden />
-            <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold">
-              {prefersReducedMotion ? keywords[kwIndex] : display}
+            {/* Reserve width to prevent layout shift while typing */}
+            <span aria-hidden className="invisible font-extrabold select-none">{longest}</span>
+            <span className="absolute inset-0 whitespace-nowrap">
+              <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent font-extrabold">
+                {prefersReducedMotion ? keywords[kwIndex] : display}
+              </span>
+              {!prefersReducedMotion && (
+                <span aria-hidden className="ml-0.5 inline-block h-[1.1em] w-[2px] align-[-0.18em] bg-white/80" style={{ animation: 'blink 1.2s steps(1,end) infinite' }} />
+              )}
             </span>
-            {!prefersReducedMotion && (
-              <span aria-hidden className="ml-0.5 inline-block h-[1.1em] w-[2px] align-[-0.18em] bg-white/80 animate-pulse" />
-            )}
           </span>
           <span className="text-white/80">.</span>
         </motion.h1>
